@@ -62,7 +62,7 @@
       	$(function() {
 			  //TODO Laissez quelques temps et enlever quand pb résolu
       		  var hasPb = false;
-      		  if(jQuery(this).find("#form-loginPopup").size() == 0){
+      		  if(jQuery("#form-loginPopup").size() == 0){
 				  $(".modal-overlay:visible").each(function(i, element) {
 					$(element).hide();
 					hasPb = true;
