@@ -49,12 +49,30 @@
 
     <@block name="bottom-page-js" >
       <#include "views/common/topbar_js.ftl" />
-      <#if (mySite?? && mySite.isContributor(Context.principal.name) ) >
+      	  <#if (mySite?? && mySite.isContributor(Context.principal.name) ) >
             <script type="text/javascript" src="${skinPath}/js/page_parameters.js"></script>
           </#if>
           <#if mySite?? && mySite.isContributor(Context.principal.name) && This.page?? && !(mySite.getHomePageRef() == This.page.document.id) >
             <script type="text/javascript" src="${skinPath}/js/setHomePage.js"></script>
           </#if>
+          
     </@block>
+    
+    <script type="text/javascript" >
+      	$(function() {
+			  //TODO Laissez quelques temps et enlever quand pb résolu
+      		  var hasPb = false;
+      		  if(jQuery(this).find("#form-loginPopup").size() == 0){
+				  $(".modal-overlay:visible").each(function(i, element) {
+					$(element).hide();
+					hasPb = true;
+				  });
+			  }
+			  /*if (hasPb){
+				  alert("Il y a eu un problème d'affichage des popup du labs\nS'il n'est pas résolu, veuillez prévenir Guillaume Mortier au 03 28 80 83 47.");
+			  }*/
+      	});
+      </script>
+    
     </body>
 </html>

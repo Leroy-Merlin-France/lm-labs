@@ -207,6 +207,13 @@ $(document).ready(function() {
 	if (jQuery("#cropSummaryPicture").val() != ""){
 		cropCoords = eval('(' + jQuery("#cropSummaryPicture").val() + ')');
 	}
+	
+	jQuery("#div-modifyCSSLine").dialog2({
+	    autoOpen : false,
+		closeOnOverlayClick : true,
+		removeOnClose : false,
+		showCloseHandle : true
+	  });
 });
 
 function openCropPicture(){

@@ -78,11 +78,6 @@ function ${divId}_loadContents(page_index, jq){
         doEllipsisTextId("${divId}-rss-${feed}DescEllipsisText" + i);
     }
 
-    // resize DIV
-    jQuery("#${divId}-container").animate({
-        height:jQuery("#${divId}").height() + 50
-    });
-
 
     // Prevent click eventpropagation
     return false;

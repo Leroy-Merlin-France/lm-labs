@@ -50,6 +50,7 @@ import com.leroymerlin.corp.fr.nuxeo.labs.site.tree.site.SharedElementTree;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.tree.site.SiteDocumentTree;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.GadgetUtils;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants.Docs;
+import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteUtils;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.Tools;
 
 @WebObject(type = "LabsSite", superType = "LabsPage")
@@ -230,6 +231,9 @@ public class Site extends NotifiablePageResource {
                 GadgetUtils.syncWidgetsConfig(row.content(0), widget, sidebar.getDocument(), session);
             }
             clearSidebar(indexToRemove);
+            if (site.getSidebar().section(0).getRows().size() == 0){
+            	LabsSiteUtils.createInitSidebarPage(doc, getCoreSession());
+            }
             session.save();
         } catch (Exception e) {
             throw WebException.wrap("Problème lors de la sauvegarde des widgets de la sidebar", e);
@@ -251,6 +255,17 @@ public class Site extends NotifiablePageResource {
 			section.row(index).remove(session);
     	}
     	session.saveDocument(sidebar.getDocument());
+    }
+    
+    @GET
+    @Path("@init-sidebar")
+    public Object initSidebar() {
+    	try {
+			LabsSiteUtils.createInitSidebarPage(doc, getCoreSession());
+		} catch (ClientException e) {
+			throw new WebResourceNotFoundException("No init sidebar", e);
+		}
+    	return redirect(getPath());
     }
 
     @Path("@currenttheme")

@@ -151,7 +151,9 @@
 							</#if>
 						    <div class="actions" style="margin-left: 200px;margin-top: 20px;">
 						      <button class="btn btn-primary required-fields" form-id="form-editNews"><i class='icon-ok'></i>${Context.getMessage('label.labsNews.edit.save')}</button>
-						      <a class="btn btn-danger" id="btnDeleteNews" onclick="javascript:if(confirm('${Context.getMessage('label.admin.labsnews.deleteConfirm')}')){deleteNews('${This.path}', '${This.previous.path}');};"><i class='icon-remove'></i>Supprimer l'actualité</a>
+						      <#if news?? && news != null>
+						      	<a class="btn btn-danger" id="btnDeleteNews" onclick="javascript:if(confirm('${Context.getMessage('label.admin.labsnews.deleteConfirm')}')){deleteNews('${This.path}', '${This.previous.path}');};"><i class='icon-remove'></i>Supprimer l'actualité</a>
+						      </#if>
 						      <a class="btn" id="btnCloseProps" onclick="javascript:closePropsNews();"><i class='icon-eye-close'></i>Fermer</a>
 						  	</div>
 						  </fieldset>

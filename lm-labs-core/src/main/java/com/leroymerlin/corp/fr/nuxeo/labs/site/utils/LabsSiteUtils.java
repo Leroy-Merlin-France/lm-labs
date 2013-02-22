@@ -519,6 +519,12 @@ public final class LabsSiteUtils {
         return true;
     }
     
+    public static DocumentModel createInitSidebarPage(final DocumentModel doc, CoreSession session) throws ClientException {
+    	List<String> widgets = new ArrayList<String>();
+    	widgets.add("html/editor");
+    	return createSidebarPage(doc, session, widgets);
+    }
+    
     public static DocumentModel createDefaultSidebarPage(final DocumentModel doc, CoreSession session) throws ClientException {
     	List<String> widgets = new ArrayList<String>();
     	widgets.add("html/topPages");

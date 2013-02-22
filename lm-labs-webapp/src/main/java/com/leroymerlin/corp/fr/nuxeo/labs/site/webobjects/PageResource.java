@@ -60,7 +60,9 @@ import com.leroymerlin.corp.fr.nuxeo.labs.site.labstemplate.LabsTemplate;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.news.LabsNews;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.AuthorFullName;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.CommonHelper;
+import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.DirectoriesUtils;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants;
+import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants.Directories;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants.Docs;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants.Schemas;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteUtils;
@@ -780,5 +782,9 @@ public class PageResource extends DocumentObject {
     public String getContentView() throws ClientException {
         LabsPageCustomView customView = doc.getAdapter(LabsPageCustomView.class);
         return customView.getContentView();
+    }
+    
+    public Map<String, String> getAvailableUserClass() throws ClientException {
+        return DirectoriesUtils.getDirMap(Directories.USER_STYLE);
     }
 }

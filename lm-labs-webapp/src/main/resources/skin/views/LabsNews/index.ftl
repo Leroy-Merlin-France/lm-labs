@@ -56,6 +56,11 @@
   </#if>
 
   <@block name="content">
+  <#include "macros/HtmlPage.ftl" />
+		<script type="text/javascript" >
+			<#assign nbrUserClassInput = 0 />
+			var userClassInputTab = new Array() ;
+        </script>
   	<#include "views/LabsNews/macroNews.ftl">
     <#if news??>
       <div class="container-fluid">
@@ -99,9 +104,12 @@
 
       		<div id="div_section_0_rows">
 		  	<#list news.getRows() as row>
+		  		<script type="text/javascript">
+                	userClassInputTab[${nbrUserClassInput}] = [<@generateInputCssClass row=row />];
+                </script>
 		  		<#if isContributor >
 		  		  <div id="div_row_${row_index}">
-			        <div class="row-fluid" id="row_s${section_index}_r${row_index}">
+			        <div class="row-fluid<@generateCssClass row=row />" id="row_s${section_index}_r${row_index}">
 			              <#list row.contents as content>
 			              	  <div class="span${content.colNumber}">
 				                    <div class="columns viewblock">
@@ -139,6 +147,7 @@
 					      	<a class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"></i>Ligne <span class="caret"></span></a>
 							<ul class="dropdown-menu" style="left: auto;right: 0px;">
 								<li>
+									<a href="#" onClick="javascript:openModifiyCSSLine('${This.path}/s/0/r/${row_index}', '${row.cssClass}', userClassInputTab[${nbrUserClassInput}]);" rel="modifyCSSLine" style="float: left;"><i class="icon-adjust"></i>Modifier le style</a>
 									<a href="#" onclick="$('#rowdelete_s${section_index}_r${row_index}').submit();return false;"><i class="icon-remove"></i>Supprimer la ligne</a>
 									<a href="#" onClick="javascript:moveUp('${This.path}/s/0/r/${row_index}', '${This.path}', 'div_row_${row_index}', '#div_section_0_rows>div');" title="Monter" alt="Monter"><i class="icon-arrow-up"></i>Monter</a>
 		    						<a href="#" onClick="javascript:moveDown('${This.path}/s/0/r/${row_index}', '${This.path}', 'div_row_${row_index}', '#div_section_0_rows>div');" title="Descendre" alt="Descendre"><i class="icon-arrow-down"></i>Descendre</a>
@@ -152,7 +161,7 @@
 			       </div>
 			    <#else>
 			      <div id="div_row_${row_index}">
-			    	<div class="row-fluid" id="row_s${section_index}_r${row_index}">
+			    	<div class="row-fluid<@generateCssClass row=row />" id="row_s${section_index}_r${row_index}">
 		                  <#list row.contents as content>
 		                    <div class="span${content.colNumber} columns">
 		                      <#if content.html == "">
@@ -165,6 +174,7 @@
 		            </div>
 		          </div>
 			     </#if>
+			     <#assign nbrUserClassInput = nbrUserClassInput + 1 />
 		    </#list>
 		    </div>
 
@@ -175,34 +185,87 @@
 		            <div style="float: right;">
 		          		<a href="#divAddRow_${section_index}" onClick="javascript:actionAddLine('${section_index}');" ><i class="icon-remove"></i></a>
 		            </div>
-		            <form class="form-horizontal" id="addrow" action="${This.path}/s/0" method="post" >
+		            <form class="form-horizontal" id="addrow" action="${This.path}/s/${section_index}" method="post" >
 		              <input type="hidden" name="action" value="addrow"/>
-		              <input type="hidden" name="rowNumber" value="1"/>
-		              <fieldset>
-		                <legend>Ajouter une ligne</legend>
-		                <div class="control-group">
-		                  <label class="control-label" for="rowTemplate">Type de ligne</label>
-		                  <div class="controls">
-		                    <select name="rowTemplate">
-		                    <#list layouts?keys as layoutCode >
-		                      <option value="${layoutCode}">${Context.getMessage(layouts[layoutCode])}</option>
-		                    </#list>
-			                </select>
-		                <button type="submit" class="btn btn-small btn-primary">Ajouter</button>
-		                <p class="help-block">
-		                    Sélectionnez le type de ligne à ajouter. Plusieurs modèles sont disponibles, les chiffres entre
-		                    parenthèses représentent des pourcentages de taille de colonne.
-		                 </p>
-		                  </div>
-		                </div>
-		              </fieldset>
+		              	<fieldset>
+			                <legend>Ajouter ligne(s)</legend>
+			                <div class="control-group">
+			                  <label class="control-label" for="title">Type de ligne</label>
+			                  <div class="controls">
+			                    <select name="rowTemplate">
+			                    <#list layouts?keys as layoutCode >
+			                      <option value="${layoutCode}">${Context.getMessage(layouts[layoutCode])}</option>
+			                    </#list>
+				                </select>
+				                <select name="rowNumber">
+			                      <option value="1" selected>Insérer 1 fois</option>
+			                      <option value="2">Insérer 2 fois</option>
+			                      <option value="3">Insérer 3 fois</option>
+			                      <option value="4">Insérer 4 fois</option>
+			                      <option value="5">Insérer 5 fois</option>
+			                      <option value="6">Insérer 6 fois</option>
+			                      <option value="7">Insérer 7 fois</option>
+			                      <option value="8">Insérer 8 fois</option>
+			                      <option value="9">Insérer 9 fois</option>
+			                      <option value="10">Insérer 10 fois</option>
+				                </select>
+				                <button type="submit" class="btn btn-small btn-primary">Ajouter</button>
+				                <div id="displayCssClass_${section_index}" style="display: none;">
+				                	<br />Classe CSS : <input class="input-medium" name="cssClass" />
+				                </div>
+				                <div id="herfDisplayCssClass_${section_index}" style="cursor: pointer;" onClick="javascript:displayCssClass('${section_index}');">
+				                	<br>Ajouter un style à la ligne
+				                </div>
+				                <p class="help-block">
+				                    Sélectionnez le type de ligne à ajouter. Plusieurs modèles sont disponibles, les chiffres entre
+				                    parenthèses représentent des pourcentages de taille de colonne.
+				                </p>
+			                  </div>
+
+			                </div>
+			              </fieldset>
 		            </form>
 		         </div>
 	          </div>
 	        </#if>
-
 		  </section>
       </div>
+      
+      		<div id="div-modifyCSSLine" style="display:none;" >
+		    	<h1>Modifier la ligne</h1>
+		    	<form class="form-horizontal" action="${This.path}" id="form-modifyCSSLine" method="post">
+		      		<input type="hidden" name="section" value=""/>
+		      		<input type="hidden" name="row" value=""/>
+		      		<input type="hidden" name="userClass" id="userClass" value=""/>
+		      		<fieldset>
+			            <div class="control-group">
+			              <label class="control-label" for="userClassSelect">Styles utilisateur</label>
+			              <div class="controls">
+			                <select multiple id="userClassSelect" name="userClassSelect" style="width: 100%;">
+			                	<#assign mapUserClass = This.getAvailableUserClass()>
+			                	<#assign keys = mapUserClass?keys>
+			                	<#if (keys?size > 0)>
+			                		<#list keys as key>
+			                			<option value="${mapUserClass[key]}">${key?js_string}</option>
+			                		</#list>
+			                	</#if>
+			                </select>
+			              </div>
+			            </div>
+			            <div class="control-group">
+			              <label class="control-label" for="cssName">Classe CSS</label>
+			              <div class="controls">
+			                <input class="input-large" id="cssName" name="cssName" type="text" />
+			              </div>
+			            </div>
+
+			            <div class="actions">
+			              <button type="submit" class="btn btn-small btn-primary">Modifier</button>&nbsp;
+			            </div>
+	           		</fieldset>
+	        	</form>
+	    	</div>
+      
     </#if>
   </@block>
 	<@block name="pageCommentable">
