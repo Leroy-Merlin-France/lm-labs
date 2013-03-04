@@ -136,6 +136,9 @@ public class PageNewsAdapter extends AbstractPage implements PageNews {
             entry.setLink(pPathBase + "/" + news.getDocumentModel().getName());
             entry.setPublishedDate(news.getStartPublication().getTime());
             entry.setDescription(NewsTools.createRssNewsDescription(news));
+            if (news.hasSummaryPicture()){
+                entry.setEnclosures(NewsTools.createRssNewsEnclosures(news, pPathBase + "/" + news.getDocumentModel().getName()));
+            }
             entries.add(entry);
         }
         return entries;

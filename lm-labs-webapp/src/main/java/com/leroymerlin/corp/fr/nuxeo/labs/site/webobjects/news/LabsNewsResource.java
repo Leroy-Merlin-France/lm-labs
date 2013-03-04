@@ -185,6 +185,7 @@ public class LabsNewsResource extends PageResource {
                 cal.setTimeInMillis((sdf.parse(strDate)).getTime());
                 return cal;
             } catch (ParseException e) {
+                log.error("Unable to parse string date '" + strDate + "'", e);
                 return null;
             }
         }

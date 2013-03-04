@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -346,23 +348,43 @@ public class LabsSiteAdapter extends AbstractLabsBase implements LabsSite {
     }
 
     @Override
+    // TODO UT LabsNews
     public DocumentModelList getLastUpdatedDocs() throws ClientException {
         StringBuilder query = new StringBuilder("SELECT * FROM Document");
         query.append(" WHERE ").append(NXQL.ECM_PATH).append(" STARTSWITH '").append(
                 doc.getPathAsString().replace("'", "\\'")).append("/").append(
-                LabsSiteConstants.Docs.TREE.docName()).append("'");
-        query.append(" AND ecm:isCheckedInVersion = 0");
-        query.append(" AND ecm:currentLifeCycleState <> 'deleted'");
-        query.append(" AND ").append(NXQL.ECM_MIXINTYPE).append(
+                LabsSiteConstants.Docs.TREE.docName()).append("'")
+            .append(" AND ").append(NXQL.ECM_ISVERSION).append(" = 0")
+            .append(" AND ").append(NXQL.ECM_LIFECYCLESTATE).append(" <> 'deleted'")
+            .append(" AND ").append(NXQL.ECM_MIXINTYPE).append(
                 " <> 'HiddenInNavigation'");
         CoreSession session = getSession();
+        DocumentModelList docs;
         if (!isContributor(session.getPrincipal().getName())) {
             query.append(" AND ").append(NXQL.ECM_MIXINTYPE).append(
-                    " <> '" + FacetNames.HIDDENINLABSNAVIGATION + "'");
+                    " <> '" + FacetNames.HIDDENINLABSNAVIGATION + "'")
+                .append(" AND ").append(NXQL.ECM_PRIMARYTYPE).append(" <> '").append(Docs.LABSNEWS.type()).append("'");
+            docs = session.query(query.toString(), new DocUnderVisiblePageFilter(session), NB_LAST_UPDATED_DOCS);
+            docs.addAll(getLastPublishedNewsDocs(session));
+            Collections.sort(docs, new Comparator<DocumentModel>() {
+                @Override
+                public int compare(DocumentModel arg0, DocumentModel arg1) {
+                    try {
+                        Calendar date1 = (Calendar) arg0.getPropertyValue("dc:modified");
+                        Calendar date2 = (Calendar) arg1.getPropertyValue("dc:modified");
+                        return date2.compareTo(date1);
+                    } catch (PropertyException e) {
+                        LOG.error(e.getMessage());
+                    } catch (ClientException e) {
+                        LOG.error(e.getMessage());
+                    }
+                    return 0;
+                }});
+        } else {
+            query.append(" ORDER BY dc:modified DESC");
+            docs = session.query(query.toString(), new DocUnderVisiblePageFilter(session), NB_LAST_UPDATED_DOCS);
         }
-        query.append(" ORDER BY dc:modified DESC");
-
-		return session.query(query.toString(), new DocUnderVisiblePageFilter(session), NB_LAST_UPDATED_DOCS);
+		return docs;
     }
 
     @Override

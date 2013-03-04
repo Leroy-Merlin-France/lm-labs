@@ -31,19 +31,17 @@ jQuery(document).ready(function(){
     }
   });
   
-  jQuery("#searchUsersBt").click(function() {
-  	jQuery('#waitingPopup').dialog2('open');
+  jQuery("#searchUsersBt").unbind().click(function() {
+    jQuery("#divSelectedUsers").html('<img src="${skinPath}/images/loading.gif" />');
     jQuery.ajax({
       type: 'GET',
       async: false,
       url: '${This.path}' + '/@labscontacts/suggestedUsers/' + jQuery("#usernameContacts").val() ,
       success: function(data) {
 	      jQuery("#divSelectedUsers").html(data);
-	      jQuery('#waitingPopup').dialog2('close');
 	  },
 	  error: function(jqXHR, textStatus, errorThrown) {
-      	alert(textStatus + ':' + errorThrown);
-	    jQuery('#waitingPopup').dialog2('close');
+      	jQuery("#divSelectedUsers").html('<div class="alert alert-block alert-error no-fade"><p><strong>' + textStatus + '</strong>:' + errorThrown + '</p></div>');
 	  }
     });
     return false;

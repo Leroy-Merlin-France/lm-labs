@@ -89,7 +89,7 @@ public final class SyndicationUtils {
                 entry.setDescription(NewsTools.createRssNewsDescription(news));
                 entry.setPublishedDate(((GregorianCalendar) doc.getPropertyValue("ln:startPublication")).getTime());
                 if (news.hasSummaryPicture()){
-                	entry.setUri("hasSummaryPicture");
+                    entry.setEnclosures(NewsTools.createRssNewsEnclosures(news, context.getUrlPath(doc).toString()));
                 }
             }
             else{

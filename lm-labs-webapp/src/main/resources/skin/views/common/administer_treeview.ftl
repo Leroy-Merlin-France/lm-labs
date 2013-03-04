@@ -97,20 +97,23 @@
 <#if adminTreeviewType == "Pages" >
 <#include "common/jstree-icons-labels-js.ftl" >
 
-			function labsPublish(operation, url, node) {
-			    jQuery('#waitingPopup').dialog2('open');
+			function labsPublish(operation, url, successCallback) {
+				var rc = false;
     			jQuery.ajax({
 					type: 'PUT',
 				    async: false,
 				    url: '${Context.modulePath}/' + url + '/@labspublish/' + operation,
 				    success: function(data) {
-				    	refreshTreeview();
+				    	rc = true;
+						if (typeof successCallback == "function") {
+							successCallback();
+						}
 				    },
-					error: function(msg){
-						alert( msg.responseText );
-						jQuery('#waitingPopup').dialog2('close');
+					error: function(jqXHR, textStatus, errorThrown) {
+						alert(jqXHR.statusText + ":" + errorThrown);
 					}
 				});
+				return rc;
 			}
 
 			function setAsHome(url, node) {
@@ -228,7 +231,24 @@
 						"separator_after"	: false,
 						"label"				: "${Context.getMessage('command.admin.publish')}",
 						"action"			: function (nodes) {
-							labsPublish("publish", this._get_node(nodes[0]).data("url"), this._get_node(nodes[0]));
+			    			jQuery('#waitingPopup').dialog2('open');
+							var treeObj = this;
+							var urlsArray = new Array();
+							jQuery.each(this._get_node(null, true), function(i, node) {
+								if(treeObj._get_node(node).data('lifecyclestate') == 'draft') {
+									urlsArray.push(treeObj._get_node(node).data("url"));
+								}
+							});
+							var cnt = 0;
+							jQuery.each(urlsArray, function(i, url) {
+								if (labsPublish("publish", url, null)) {
+									cnt++;
+								}
+							});
+							if (cnt > 0) {
+						    	refreshTreeview();
+							}
+							jQuery('#waitingPopup').dialog2('close');
 						}
 					},
 					"draft" : {
@@ -237,7 +257,24 @@
 						"separator_after"	: false,
 						"label"				: "${Context.getMessage('command.admin.draft')}",
 						"action"			: function (nodes) {
-							labsPublish("draft", this._get_node(nodes[0]).data("url"), this._get_node(nodes[0]));
+						    jQuery('#waitingPopup').dialog2('open');
+							var treeObj = this;
+							var urlsArray = new Array();
+							jQuery.each(this._get_node(null, true), function(i, node) {
+								if(treeObj._get_node(node).data('lifecyclestate') == 'published') {
+									urlsArray.push(treeObj._get_node(node).data("url"));
+								}
+							});
+							var cnt = 0;
+							jQuery.each(urlsArray, function(i, url) {
+								if (labsPublish("draft", url, null)) {
+									cnt++;
+								}
+							});
+							if (cnt > 0) {
+						    	refreshTreeview();
+							}
+							jQuery('#waitingPopup').dialog2('close');
 						}
 					},
 					"markasdeleted" : {
@@ -246,7 +283,7 @@
 						"separator_after"	: false,
 						"label"				: "${Context.getMessage('command.admin.markAsDeleted')}",
 						"action"			: function (nodes) {
-							labsPublish("delete", this._get_node(nodes[0]).data("url"), this._get_node(nodes[0]));
+							labsPublish("delete", this._get_node(nodes[0]).data("url"), refreshTreeview);
 						}
 					},
 					"undelete" : {
@@ -255,7 +292,7 @@
 						"separator_after"	: false,
 						"label"				: "${Context.getMessage('command.admin.undelete')}",
 						"action"			: function (nodes) {
-							labsPublish("undelete", this._get_node(nodes[0]).data("url"), this._get_node(nodes[0]));
+							labsPublish("undelete", this._get_node(nodes[0]).data("url"), refreshTreeview);
 						}
 					},
 					"removeNews" : {
