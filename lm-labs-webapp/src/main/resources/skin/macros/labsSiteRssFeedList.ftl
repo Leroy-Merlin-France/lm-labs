@@ -29,16 +29,22 @@ if(!${divId}_last_messages){
 
 function ${divId}_parseXml(xml) {
     $(xml).find("item").each(function(i) {
+    	var url = '';
+        <#if guid == "hasSummaryPicture">
+    	var enclosureObj = jQuery(this).find('enclosure');
+    	if (enclosureObj != null) {
+    		urlAttr = jQuery(enclosureObj).attr('url');
+    		if (urlAttr != null) {
+    			url = urlAttr;
+    		}
+    	}
+        </#if>
         var item = new Array(
             $(this).find("pubDate").text(),
             $(this).find("title").text(),
             $(this).find("description").text(),
             $(this).find("link").text(),
-            <#if guid == "hasSummaryPicture">
-            	$(this).find("guid").text()
-            <#else>
-            	''
-            </#if>
+            url
         );
         ${divId}_last_messages.push(item);
     });
