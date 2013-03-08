@@ -40,4 +40,6 @@
   </@block>
   <@block name="pageCommentable">
   </@block>
+  <@block name="like">
+  </@block>
 </@extends>
