@@ -50,30 +50,34 @@ public class PublishedSiteActivitiesEventListener  implements EventListener {
     
     private void sendDocument(DocumentModel doc, DocumentEventContext ctx) throws Exception {
     	List<String> sendTo = DirectoriesUtils.getDirList(Directories.NOTIFICATION);
-        
-		Map<String, Object> infoMap = new HashMap<String, Object>();
-        infoMap.put("document", doc);
-        infoMap.put(NotificationConstants.SUBJECT_TEMPLATE_KEY, "subjectPublishedSite");
-        infoMap.put("sender",  (NuxeoPrincipal)ctx.getPrincipal());
-        infoMap.put(NotificationConstants.TEMPLATE_KEY, "publishedSite");
-
-        LabsSite site = Tools.getAdapter(LabsSite.class, doc, ctx.getCoreSession());
-        infoMap.put("siteTitle", site.getTitle());
-        infoMap.put("siteUrl", site.getURL());
-        String baseUrl = Framework.getProperty("labs.baseUrl");
-        if(StringUtils.isEmpty(baseUrl)){
-        	baseUrl = Framework.getProperty("nuxeo.loopback.url")+ "/site/labssites";
+        if (sendTo.size() > 0){
+			Map<String, Object> infoMap = new HashMap<String, Object>();
+	        infoMap.put("document", doc);
+	        infoMap.put(NotificationConstants.SUBJECT_TEMPLATE_KEY, "subjectPublishedSite");
+	        infoMap.put("sender",  (NuxeoPrincipal)ctx.getPrincipal());
+	        infoMap.put(NotificationConstants.TEMPLATE_KEY, "publishedSite");
+	
+	        LabsSite site = Tools.getAdapter(LabsSite.class, doc, ctx.getCoreSession());
+	        infoMap.put("siteTitle", site.getTitle());
+	        infoMap.put("siteUrl", site.getURL());
+	        String baseUrl = Framework.getProperty("labs.baseUrl");
+	        if(StringUtils.isEmpty(baseUrl)){
+	        	baseUrl = Framework.getProperty("nuxeo.loopback.url")+ "/site/labssites";
+	        }
+	        infoMap.put("labsBaseUrl", baseUrl);
+	        
+	        EmailHelper emailHelper = new EmailHelper();
+	        for (String to : sendTo) {
+	            infoMap.put("mail.to", to);
+	            try {
+	                emailHelper.sendmail(infoMap);
+	            } catch (Exception e) {
+	            	LOG.debug("Failed to send notification email " + e);
+	            }
+	        }
         }
-        infoMap.put("labsBaseUrl", baseUrl);
-        
-        EmailHelper emailHelper = new EmailHelper();
-        for (String to : sendTo) {
-            infoMap.put("mail.to", to);
-            try {
-                emailHelper.sendmail(infoMap);
-            } catch (Exception e) {
-            	LOG.debug("Failed to send notification email " + e);
-            }
+        else{
+        	LOG.info("No configured notifications for published site. ");
         }
     }
 
