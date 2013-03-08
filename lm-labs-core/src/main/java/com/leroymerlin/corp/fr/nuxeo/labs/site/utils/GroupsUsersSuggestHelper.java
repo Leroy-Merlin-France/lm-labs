@@ -90,8 +90,6 @@ public class GroupsUsersSuggestHelper {
             final String trimmed = StringUtils.trim(str);
             add(suggests, searchGroups(userManager, trimmed));
             add(suggests, searchUsers(userManager, trimmed));
-            add(suggests, searchUsers(userManager, trimmed));
-            add(suggests, searchUsers(userManager, trimmed));
             Collections.sort(suggests);
         }
 
