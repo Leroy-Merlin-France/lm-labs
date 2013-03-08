@@ -32,6 +32,7 @@ import com.leroymerlin.corp.fr.nuxeo.labs.site.exception.NoPublishException;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.publisher.LabsPublisher;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteConstants.Docs;
+import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteUtils;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.LabsSiteWebAppUtils;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.utils.Tools;
 
@@ -67,6 +68,9 @@ public class LabsPublishService extends DefaultAdapter {
         DocumentModel document = getDocument();
         try {
             LabsSiteWebAppUtils.publish(document, ctx.getCoreSession());
+            if (LabsSiteConstants.Docs.SITE.type().equals(document.getType())){
+            	LabsSiteUtils.eventFirePublisedSite(document, ctx.getCoreSession());
+            }
             return Response.ok(PUBLISH).build();
         } catch (NoPublishException e) {
             log.error(IMPOSSIBLE_TO_PUBLISH, e);

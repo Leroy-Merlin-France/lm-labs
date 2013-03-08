@@ -106,13 +106,23 @@
     </directory>
 
     <directory name="labs_category">
-      <schema>labscategory</schema>
+      <schema>labscategory</schema>l
       <dataSource>java:/nxsqldirectory</dataSource>
       <table>dir_labs_category</table>
       <idField>id</idField>
       <autoincrementIdField>false</autoincrementIdField>
       <dataFile>directories/labs_category.csv</dataFile>
-      <createTablePolicy>always</createTablePolicy>
+      <createTablePolicy>on_missing_columns</createTablePolicy>
+    </directory>
+
+    <directory name="labs_notification">
+      <schema>vocabulary</schema>
+      <dataSource>java:/nxsqldirectory</dataSource>
+      <table>dir_labs_notification</table>
+      <idField>id</idField>
+      <autoincrementIdField>false</autoincrementIdField>
+      <dataFile>directories/labs_notification.csv</dataFile>
+      <createTablePolicy>on_missing_columns</createTablePolicy>
     </directory>
 
   </extension>

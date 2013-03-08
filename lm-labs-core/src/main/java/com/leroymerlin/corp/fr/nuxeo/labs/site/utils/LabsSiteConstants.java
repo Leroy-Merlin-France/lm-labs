@@ -88,6 +88,8 @@ public final class LabsSiteConstants {
         public static final String CHECK_PAGES_TO_NOTIFY = "checkPagesToNotify";
         public static final String PAGE_REMOVED = "pageRemoved";
         public static final String PAGE_ADDED_COMMENT = "pageAddedComment";
+        public static final String PUBLISHED_SITE = "publishedSite";
+        public static final String PUBLISHED_SITE_MAIL = "publishedSiteMail";
     }
 
     public final class FacetNames {
@@ -359,7 +361,8 @@ public final class LabsSiteConstants {
         PAGE_WIDGETGROUPS("labs_HtmlPage_widgetGroups", "vocabulary", "id", "label", "ordering"),
         FONT_FAMILIES("labs_fontfamilies", "vocabulary", "id", "label", "label"),
         USER_STYLE("labs_userStyle", "vocabulary", "id", "label", "ordering"),
-        CATEGORY("labs_category", "vocabulary", "id", "label", "ordering");
+        CATEGORY("labs_category", "vocabulary", "id", "label", "ordering"),
+        NOTIFICATION("labs_notification", "vocabulary", "id", "label", "ordering");
 
         private String dirName;
         private String schema;
