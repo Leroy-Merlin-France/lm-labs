@@ -20,6 +20,9 @@ import org.nuxeo.ecm.core.api.Filter;
 import org.nuxeo.ecm.core.api.PathRef;
 import org.nuxeo.ecm.core.api.UnrestrictedSessionRunner;
 import org.nuxeo.ecm.core.api.security.SecurityConstants;
+import org.nuxeo.ecm.core.event.Event;
+import org.nuxeo.ecm.core.event.EventProducer;
+import org.nuxeo.ecm.core.event.impl.DocumentEventContext;
 import org.nuxeo.ecm.core.query.sql.NXQL;
 import org.nuxeo.ecm.platform.usermanager.UserManager;
 import org.nuxeo.ecm.spaces.impl.docwrapper.DocGadgetImpl;
@@ -599,5 +602,25 @@ public final class LabsSiteUtils {
 		HtmlRow row = section.addRow();
 		row.addContent(0, "");
 		GadgetUtils.syncWidgetsConfig(row.content(0), widget, sidebar, session);
+	}
+	
+	public static void eventFirePublisedSite(DocumentModel doc, CoreSession session){
+		EventProducer eventProducer;
+		try {
+			eventProducer = Framework.getService(EventProducer.class);
+		} catch (Exception e) {
+			log.error("Cannot get EventProducer", e);
+			return;
+		}
+
+		DocumentEventContext ctx = new DocumentEventContext(session,
+				session.getPrincipal(), doc);
+		Event event = ctx.newEvent(LabsSiteConstants.EventNames.PUBLISHED_SITE);
+		try {
+			eventProducer.fireEvent(event);
+		} catch (ClientException e) {
+			log.error("Cannot fire event", e);
+			return;
+		}
 	}
 }

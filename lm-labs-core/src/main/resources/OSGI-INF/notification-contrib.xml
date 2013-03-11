@@ -47,6 +47,10 @@
     <template name="pageAddedComment_en" src="templates/pageAddedComment_en.ftl" />
     <template name="subjectPageAddedComment_fr" src="templates/subjectPageAddedComment_fr.ftl" />
     <template name="subjectPageAddedComment_en" src="templates/subjectPageAddedComment_en.ftl" />
+    <template name="publishedSite_fr" src="templates/publishedSite_fr.ftl" />
+    <template name="publishedSite_en" src="templates/publishedSite_en.ftl" />
+    <template name="subjectPublishedSite_fr" src="templates/subjectPublishedSite_fr.ftl" />
+    <template name="subjectPublishedSite_en" src="templates/subjectPublishedSite_en.ftl" />
     
     <!-- extention of existing Nuxeo template -->
     <template name="subscriptionsUpdated_fr" src="templates/subscriptionsUpdated_fr.ftl" />

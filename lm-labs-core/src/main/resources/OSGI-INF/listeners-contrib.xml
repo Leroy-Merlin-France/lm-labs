@@ -18,6 +18,8 @@
             class="com.leroymerlin.corp.fr.nuxeo.labs.site.event.CommentsEventListener" priority="202" />
         <listener name="commentsActivitiesEventListener" async="false" postCommit="false"
             class="com.leroymerlin.corp.fr.nuxeo.labs.site.event.CommentsActivitiesEventListener" priority="203" />
+        <listener name="publishedSiteActivitiesEventListener" async="false" postCommit="false"
+            class="com.leroymerlin.corp.fr.nuxeo.labs.site.event.PublishedSiteActivitiesEventListener" priority="204" />
 			
 	</extension>
 

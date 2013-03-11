@@ -60,7 +60,7 @@ public class CommentsActivitiesEventListener implements EventListener {
     
 
 
-    private DocumentEventContext getContext(DocumentModel doc, CoreSession session) throws ClientException, PropertyException {
+    protected DocumentEventContext getContext(DocumentModel doc, CoreSession session) throws ClientException, PropertyException {
         DocumentEventContext ctx = new DocumentEventContext(session, session.getPrincipal(), doc);
         ctx.setProperty("PageId", doc.getId());
         String baseUrl = Framework.getProperty("labs.baseUrl");
