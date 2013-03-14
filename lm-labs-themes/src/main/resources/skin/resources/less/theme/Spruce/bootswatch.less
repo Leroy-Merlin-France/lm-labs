@@ -6,7 +6,25 @@
 // TYPOGRAPHY
 // --------------------------------------------------
 
-@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
+//@import url('https://fonts.googleapis.com/css?family=Josefin+Slab:400,700');
+@font-face {
+  font-family: 'Josefin Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/JosefinSlab-Regular.eot')";
+  src: local('Josefin Slab'), local('JosefinSlab'), 
+  ~"url('@{labsThemeFontPath}/JosefinSlab-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/JosefinSlab-Regular.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Josefin Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/JosefinSlab-Bold.eot')";
+  src: local('Josefin Slab Bold'), local('JosefinSlab-Bold'), 
+  ~"url('@{labsThemeFontPath}/JosefinSlab-Bold.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/JosefinSlab-Bold.woff')" format('woff');
+}
 
 h1 {
 	font-size: 54px;

@@ -6,7 +6,25 @@
 // TYPOGRAPHY
 // -----------------------------------------------------
 
-@import url('https://fonts.googleapis.com/css?family=News+Cycle:400,700');
+//@import url('https://fonts.googleapis.com/css?family=News+Cycle:400,700');
+@font-face {
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/NewsCycle-Regular.eot')";
+  src: local('News Cycle Regular'), local('NewsCycle-Regular'), 
+  ~"url('@{labsThemeFontPath}/NewsCycle-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/NewsCycle-Regular.woff')" format('woff');
+}
+@font-face {
+  font-family: 'News Cycle';
+  font-style: normal;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/NewsCycle-Bold.eot')";
+  src: local('News Cycle Bold'), local('NewsCycle-Bold'), 
+  ~"url('@{labsThemeFontPath}/NewsCycle-Bold.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/NewsCycle-Bold.woff')" format('woff');
+}
 
 h1, h2, h3, h4, h5, h6 {
 
