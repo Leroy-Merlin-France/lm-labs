@@ -1,27 +1,3 @@
-function sendForm(path, msgError){
-	jQuery('#waitingPopup').dialog2('open');
-    $("#form-labssite").validate();
-    var options = {
-	    beforeSubmit: function(){
-	      return $("#form-labssite").valid();
-	    },
-        success: function(responseText, statusText) {
-          if (statusText == "notmodified"){
-            $("#labsSiteURL").val($("#oldURL").val());
-            alert(msgError);
-            jQuery('#waitingPopup').dialog2('close');
-          }else{
-            document.location.href=path + '?homepage=display';
-          }
-        },
-        error: function(){
-          alert("ERROR");
-          jQuery('#waitingPopup').dialog2('close');
-        }
-    };
-    $('#form-labssite').ajaxForm(options);
-}
-
 function extractSortValue(node) {
     // extract data from markup and return it
     var sortValues = jQuery(node).find('span[class=sortValue]');
