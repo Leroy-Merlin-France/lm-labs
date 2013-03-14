@@ -702,7 +702,7 @@
 				}
 			})
 			.bind("rename.jstree", function (e, data) {
-				if (data.rslt.obj.attr('rel') != 'Tree') {
+				if (data.rslt.obj.attr('rel') != 'Tree' && data.rslt.old_name != data.rslt.new_name) {
 					jQuery.post(
 						"${This.previous.path}/id/" + data.rslt.obj.attr("id") + "/@put",
 						{
