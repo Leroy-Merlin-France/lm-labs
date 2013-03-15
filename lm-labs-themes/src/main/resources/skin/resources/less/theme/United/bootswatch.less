@@ -6,7 +6,15 @@
 // TYPOGRAPHY
 // -----------------------------------------------------
 
-@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+//@import url(https://fonts.googleapis.com/css?family=Ubuntu);
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/Ubuntu-Regular.eot')";
+  src: local('Ubuntu'), ~"url('@{labsThemeFontPath}/Ubuntu-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Ubuntu-Regular.woff')" format('woff');
+}
 
 // SCAFFOLDING
 // -----------------------------------------------------

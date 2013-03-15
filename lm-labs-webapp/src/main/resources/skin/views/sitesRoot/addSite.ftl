@@ -114,10 +114,17 @@
   </div>
 </form>
 <script>
-function successAddSite() {
-   	jQuery('#waitingPopup').dialog2('open');
-	document.location.href = '${This.path}/' + jQuery('#labsSiteURL').val();
-	//document.location.reload(true);
+function callBackAddSite(data) {
+	if (data == "site added"){
+	   	jQuery('#waitingPopup').dialog2('open');
+		document.location.href = '${This.path}/' + jQuery('#labsSiteURL').val();
+	}
+	else{
+		jQuery.pnotify({type: 'error', hide: false, title: "", text: data});
+		window.setTimeout(function() {
+			 document.location.href = '${This.path}/';
+			}, 5000);
+	}
 }
 
 function beforeSubmitCheckSiteUrl() {
@@ -131,8 +138,7 @@ function beforeSubmitCheckSiteUrl() {
 jQuery(document).ready(function() {
     jQuery('#form-labssite').ajaxForm({
         beforeSubmit:  beforeSubmitCheckSiteUrl,
-        //error: defaultConfigGadgetAjaxFormError,
-        success: successAddSite
+        success: callBackAddSite
     });
 	jQuery('#verifyUrlAvailability').attr('disabled', true);
 	jQuery('#verifyUrlAvailability').button();

@@ -6,7 +6,43 @@
 // TYPOGRAPHY
 // -----------------------------------------------------
 
-@import url('http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic');
+//@import url('http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic');
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/Lora-Regular.eot')";
+  src: local('Lora'), 
+  ~"url('@{labsThemeFontPath}/Lora-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Lora-Regular.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/Lora-Bold.eot')";
+  src: local('Lora Bold'), local('Lora-Bold'), 
+  u~"url('@{labsThemeFontPath}/Lora-Bold.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Lora-Bold.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/Lora-Italic.eot')";
+  src: local('Lora Italic'), local('Lora-Italic'), 
+  ~"url('@{labsThemeFontPath}/Lora-Italic.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Lora-Italic.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/Lora-BoldItalic.eot')";
+  src: local('Lora Bold Italic'), local('Lora-BoldItalic'), 
+  ~"url('@{labsThemeFontPath}/Lora-BoldItalic.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Lora-BoldItalic.woff')" format('woff');
+}
 
 // SCAFFOLDING
 // -----------------------------------------------------

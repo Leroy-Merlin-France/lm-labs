@@ -1,6 +1,26 @@
 //simpless:!minify
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:700);
-@import url(http://fonts.googleapis.com/css?family=Lustria:400);
+
+//@import url(http://fonts.googleapis.com/css?family=PT+Sans:700);
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/PT_Sans-Web-Bold.eot')";
+  src: local('PT Sans Bold'), local('PTSans-Bold'), 
+  	~"url('@{labsThemeFontPath}/PT_Sans-Web-Bold.ttf')" format('truetype'),
+    ~"url('@{labsThemeFontPath}/PT_Sans-Web-Bold.woff')" format('woff');
+}
+
+//@import url(http://fonts.googleapis.com/css?family=Lustria:400);
+@font-face {
+  font-family: 'Lustria';
+  font-style: normal;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/Lustria-Regular.eot')";
+  src: local('Lustria'), local('Lustria-Regular'),
+  	~"url('@{labsThemeFontPath}/Lustria-Regular.ttf')" format('truetype'),
+    ~"url('@{labsThemeFontPath}/Lustria-Regular.woff')" format('woff');
+}
 
 @import 'variables.less';
 

@@ -6,7 +6,15 @@
 // TYPOGRAPHY
 // -----------------------------------------------------
 
-@import url(https://fonts.googleapis.com/css?family=Telex);
+//@import url(https://fonts.googleapis.com/css?family=Telex);
+@font-face {
+  font-family: 'Telex';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/Telex-Regular.eot')";
+  src: local('Telex-Regular'), ~"url('@{labsThemeFontPath}/Telex-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Telex-Regular.woff')" format('woff');
+}
 
 // SCAFFOLDING
 // -----------------------------------------------------

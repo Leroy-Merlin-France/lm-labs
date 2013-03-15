@@ -6,7 +6,43 @@
 // TYPOGRAPHY
 // -----------------------------------------------------
 
-@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700');
+//@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700');
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/OpenSans-Regular.eot')";
+  src: local('Open Sans'), local('OpenSans'), 
+  ~"url('@{labsThemeFontPath}/OpenSans-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/OpenSans-Regular.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/OpenSans-Bold.eot')";
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), 
+  ~"url('@{labsThemeFontPath}/OpenSans-Bold.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/OpenSans-Bold.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/OpenSans-Italic.eot')";
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), 
+  ~"url('@{labsThemeFontPath}/OpenSans-Italic.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/OpenSans-Italic.woff')" format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 700;
+  src: ~"url('@{labsThemeFontPath}/OpenSans-BoldItalic.eot')";
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), 
+  ~"url('@{labsThemeFontPath}/OpenSans-BoldItalic.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/OpenSans-BoldItalic.woff')" format('woff');
+}
 
 // SCAFFOLDING
 // -----------------------------------------------------

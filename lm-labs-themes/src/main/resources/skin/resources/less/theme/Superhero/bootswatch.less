@@ -6,8 +6,27 @@
 // TYPOGRAPHY
 // --------------------------------------------------
 
-@import url(https://fonts.googleapis.com/css?family=Oswald);
-@import url(https://fonts.googleapis.com/css?family=Noticia+Text);
+//@import url(https://fonts.googleapis.com/css?family=Oswald);
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/Oswald-Regular.eot')";
+  src: local('Oswald Regular'), local('Oswald-Regular'), 
+  ~"url('@{labsThemeFontPath}/Oswald-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/Oswald-Regular.woff')" format('woff');
+}
+
+//@import url(https://fonts.googleapis.com/css?family=Noticia+Text);
+@font-face {
+  font-family: 'Noticia Text';
+  font-style: normal;
+  font-weight: 400;
+  src: ~"url('@{labsThemeFontPath}/NoticiaText-Regular.eot')";
+  src: local('Noticia Text'), local('NoticiaText-Regular'), 
+  ~"url('@{labsThemeFontPath}/NoticiaText-Regular.ttf')" format('truetype'),
+  ~"url('@{labsThemeFontPath}/NoticiaText-Regular.woff')" format('woff');
+}
 
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, h6 {
 	font-family: @headingsFontFamily;

@@ -11,3 +11,4 @@ ${styleProperties}
 
 @FontAwesomePath: '${skinPath}/less/font';
 @skinPath: '${skinPath}';
+@labsThemeFontPath: '${skinPath}/less/theme/${This.theme.name}/fonts';

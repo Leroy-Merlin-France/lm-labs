@@ -13,10 +13,10 @@ function getLabelHtml(state, isPageTemplate) {
 		labelHtml = '<span class="label label-warning">${Context.getMessage('label.status.deleted')}</span>';
 	}
 	if (isPageTemplate == true) {
-		labelHtml = labelHtml + '&nbsp;<span class="label label-info">${Context.getMessage('label.status.page.template')}</span>';
+		labelHtml = labelHtml + '<span class="label label-info" style="margin-left: 3px;">${Context.getMessage('label.status.page.template')}</span>';
 	}
 	if (labelHtml.length > 0){
-		labelHtml = '&nbsp;<ins>' + labelHtml + '</ins>';
+		labelHtml = '<ins style="margin-left: 3px;">' + labelHtml + '</ins>';
 	}
 	return labelHtml;
 }
