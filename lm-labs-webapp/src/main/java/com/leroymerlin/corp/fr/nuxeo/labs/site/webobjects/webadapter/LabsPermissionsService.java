@@ -93,7 +93,12 @@ public class LabsPermissionsService extends DefaultAdapter {
                 permissionsAdmin.add(perm);
                 try {
                     NuxeoPrincipal principal = userManager.getPrincipal(perm.getName());
-                    usernameAndEmail.put(perm.getName(), principal.getEmail());
+                    if (principal != null){
+                    	usernameAndEmail.put(perm.getName(), principal.getEmail());
+                    }
+                    else{
+                    	usernameAndEmail.put(perm.getName(), "");
+                    }
                 } catch (ClientException e) {
                     throw WebException.wrap(e);
                 }
