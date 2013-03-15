@@ -29,7 +29,6 @@ import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.nuxeo.common.utils.URIUtils;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.ClientException;
 import org.nuxeo.ecm.core.api.CoreSession;
@@ -369,6 +368,10 @@ public class SitesRoot extends ModuleRoot {
     
     @POST
     public Response doPost() {
+    	if (((NuxeoPrincipal)ctx.getPrincipal()).isAnonymous()){
+//    	if (((NuxeoPrincipal)ctx.getPrincipal()).getName().equals("CGM")){
+    		return Response.ok(ctx.getMessage("label.labssites.edit.error.anonymous")).build();
+    	}
         FormData form = ctx.getForm();
         String piwikId = form.getString("piwik:piwikId");
         String pDescription = form.getString("dc:description");
@@ -426,14 +429,13 @@ public class SitesRoot extends ModuleRoot {
             }
             session.save();
             if (templateToCopy && !copied) {
-                return redirect(getPath()
-                        + "?message_error=label.labssites.edit.error.template.copy.failed");
+                return Response.ok(ctx.getMessage("label.labssites.edit.error.template.copy.failed")).build();
             }
-            return redirect(getPath() + "/" + URIUtils.quoteURIPathComponent(labSite.getURL(), true));
+            return Response.ok("site added").build();
         } catch (SiteManagerException e) {
-            return redirect(getPath() + "?message_error=" + e.getMessage());
+            return Response.ok(e.getMessage()).build();
         } catch (ClientException e) {
-            throw WebException.wrap(e);
+            return Response.ok(e.getMessage()).build();
         }
 
     }
