@@ -137,8 +137,13 @@ public class LabsNewsAdapter extends AbstractPage implements LabsNews,
         if (StringUtils.isEmpty(lastContributorFullName)) {
             UserManager userManager = Framework.getService(UserManager.class);
             NuxeoPrincipal user = userManager.getPrincipal(getLastContributor());
-            lastContributorFullName = user.getFirstName() + " "
+            if (user != null){
+            	lastContributorFullName = user.getFirstName() + " "
                     + user.getLastName();
+            }
+            else{
+            	lastContributorFullName = getLastContributor();
+            }
         }
         return lastContributorFullName;
     }
