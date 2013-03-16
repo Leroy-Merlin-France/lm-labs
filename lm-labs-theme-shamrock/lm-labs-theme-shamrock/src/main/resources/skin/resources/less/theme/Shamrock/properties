@@ -1,0 +1,57 @@
+;
+
+@mainColor;Couleur générale du site;La valeur par défaut est #7AB51D;color
+
+@voidFont;Police;Police générale du site, s'applique sur tout le site;void
+@baseFontFamily;Police du site;;font
+@baseFontSize;Taille de base;;size
+@textColor;Couleur des textes;;color
+
+@voidTitleH1;label.labssites.appearance.theme.property.h1;help.labssites.appearance.theme.property.h1;void
+@basefontTitleH1;label.labssites.appearance.theme.property.h.fontsize;;size
+@baseFontColorTitleH1;label.labssites.appearance.theme.property.h.color;;color
+
+@voidTitleH2;label.labssites.appearance.theme.property.h2;help.labssites.appearance.theme.property.h2;void
+@basefontTitleH2;label.labssites.appearance.theme.property.h.fontsize;;size
+@baseFontColorTitleH2;label.labssites.appearance.theme.property.h.color;;color
+
+@voidTitleH3;label.labssites.appearance.theme.property.h3;help.labssites.appearance.theme.property.h3;void
+@basefontTitleH3;label.labssites.appearance.theme.property.h.fontsize;;size
+@baseFontColorTitleH3;label.labssites.appearance.theme.property.h.color;;color
+
+@voidTitleH4;label.labssites.appearance.theme.property.h4;help.labssites.appearance.theme.property.h4;void
+@basefontTitleH4;label.labssites.appearance.theme.property.h.fontsize;;size
+@baseFontColorTitleH4;label.labssites.appearance.theme.property.h.color;;color
+
+@voidTitleH5;label.labssites.appearance.theme.property.h5;help.labssites.appearance.theme.property.h5;void
+@basefontTitleH5;label.labssites.appearance.theme.property.h.fontsize;;size
+@baseFontColorTitleH5;label.labssites.appearance.theme.property.h.color;;color
+
+@voidTitleH6;label.labssites.appearance.theme.property.h6;help.labssites.appearance.theme.property.h6;void
+@basefontTitleH6;label.labssites.appearance.theme.property.h.fontsize;;size
+@baseFontColorTitleH6;label.labssites.appearance.theme.property.h.color;;color
+
+@voidLabsNews;label.labssites.appearance.theme.property.news;help.labssites.appearance.theme.property.news;void
+@labsNewsSummaryColorTitle;label.labssites.appearance.theme.property.h.color;help.labssites.appearance.theme.property.labsNewsSummaryColorTitle;color
+
+@voidTabs;Navigation;Pour chaque onglets de navigation;void
+@bgcolortabs;Couleur de navigation;Couleur de base;color
+@baseFontColorTabs;Couleur texte nav.;Couleur des textes;color
+
+
+/*--------------customBackgroundImage-------------------*/
+@voidBodyBackgroundColor;Couleur d'arrière plan;Couleur d'arrière plan constituant tout le contour du site;void
+@bodyBackgroundIsColor;Activer;;boolean
+@labsBodyBackgroundColor;Couleur d'arrière plan;;color
+
+@voidBodyBackgroundGradient;Dégradé d'arrière plan;Dégradé d'arrière plan constituant tout le contour du site;void
+@bodyBackgroundIsGradient;Activer;;boolean
+@labsBodyBackgroundFirstColor;Première couleur d'arrière plan;;color
+@labsBodyBackgroundLastColor;Deuxième couleur d'arrière plan;;color
+
+@voidBodyBackgroundURL;Image d'arrière plan;Image d'arrière plan constituant tout le contour du site, Répété sur tout le fond.;void
+@bodyBackgroundIsImage;Activer;;boolean
+@backgroundURL;Image d'arrière plan;;image
+
+
+/*@variableName;Label IHM;Explication du champs;type (color, font, size, string (par défaut))*/

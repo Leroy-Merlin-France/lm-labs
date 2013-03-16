@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-Name: lm-labs-theme-shamrock
+Bundle-Vendor: Leroy Merlin
+Bundle-Version: 1.0.0
+Bundle-ManifestVersion: 1
+Bundle-SymbolicName: com.leroymerlin.labs.themes.shamrock;singleton:=true
+Fragment-Host: com.leroymerlin.labs.webapp

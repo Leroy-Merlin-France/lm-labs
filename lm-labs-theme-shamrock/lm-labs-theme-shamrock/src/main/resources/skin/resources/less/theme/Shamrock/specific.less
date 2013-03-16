@@ -1,0 +1,22 @@
+@import "bootstrap.less";
+@import "../theme/Shamrock/bootswatch.less";
+@import "../theme/Shamrock/variables.less";
+@import "../theme/labs-fixed.less";
+@import "../theme/dark-background.less";
+@import "../theme/default-titles-variables.less";
+@import "../theme/titles-style.less";
+
+@labsBlockBackgroundColor: @bodyBackground;
+@labsContentBackgroundColor: @bodyBackground;
+
+@labsGradientPrimaryColorHtmlElement: @grayLighter;
+@labsGradientSecondColorHtmlElement: @grayLight;
+@labsBoxShadowHtmlElement: 1px 1px 5px @grayDarker;
+
+#FKtopContent, #FKfooter, .navbar {
+    .box-shadow(1px 1px 12px @grayDarker);
+}
+
+h1:before {
+	content: "";
+}

@@ -1,0 +1,27 @@
+<package type="addon" name="lm-labs-theme-shamrock" version="@VERSION@">
+  <title>LM Labs Bootswatch Shamrock Theme</title>
+  <description>
+    <h1>Descpription</h1>
+
+    <p>
+      This package integrates the Bootswatch Shamrock theme you can find in
+      <a href="http://bootswatch.com/">Bootswath website</a>.
+    </p>
+
+  </description>
+  <home-page>http://doc.nuxeo.com/x/bIEk</home-page>
+  <vendor>Leroy Merlin</vendor>
+  <installer restart="false" />
+  <uninstaller restart="false" />
+  <hotreload-support>true</hotreload-support>
+  <!-- <require-terms-and-conditions-acceptance>false -->
+  <!-- </require-terms-and-conditions-acceptance> -->
+  <nuxeo-validation>nuxeo_certified</nuxeo-validation>
+  <production-state>production_ready</production-state>
+  <supported>false</supported>
+  <platforms>
+    <platform>cap-5.6.0-HF05</platform>
+  </platforms>
+  <license>LGPL</license>
+  <license-url>http://www.gnu.org/licenses/lgpl.html</license-url>
+</package>

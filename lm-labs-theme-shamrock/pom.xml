@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.leroymerlin.labs</groupId>
+    <artifactId>lm-labs-parent</artifactId>
+    <version>2.18-SNAPSHOT</version>
+  </parent>
+
+  <groupId>com.leroymerlin.labs</groupId>
+  <artifactId>lm-labs-theme-shamrock-parent</artifactId>
+  <name>LM Labs :: Bootswatch Shamrock Theme Parent</name>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>lm-labs-theme-shamrock</module>
+  </modules>
+
+  <profiles>
+    <profile>
+      <id>distrib</id>
+      <modules>
+        <module>lm-labs-theme-shamrock-marketplace</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>marketplace</id>
+      <modules>
+        <module>lm-labs-theme-shamrock-marketplace</module>
+      </modules>
+    </profile>
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <configuration>
+          <additionalProjectnatures>
+            <projectnature>org.nuxeo.ide.NuxeoNature</projectnature>
+          </additionalProjectnatures>
+          <classpathContainers>
+            <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
+            <classpathContainer>org.nuxeo.ide.SDK_CONTAINER</classpathContainer>
+            <classpathContainer>org.nuxeo.ide.SDK_TEST_CONTAINER</classpathContainer>
+          </classpathContainers>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
