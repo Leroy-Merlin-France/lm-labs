@@ -33,6 +33,18 @@ function setCheckUrlButton(state) {
     }
 }
 
+function isGoodCharacterForUrl(car) {
+	return isGoodIntValueOfCharForUrl(car.charCodeAt(0));
+}
+
+function isGoodIntValueOfCharForUrl(intValue) {
+    if ((intValue >= 32 && intValue <= 44) || intValue === 47
+            || (intValue >= 58 && intValue <= 64)) {
+        return false;
+    }
+	return true;
+}
+
 jQuery(document).ready(function() {
     jQuery('#labsSiteURL').keypress(function(e) {
         jQuery('#urlAvailability').val('false');
@@ -41,10 +53,21 @@ jQuery(document).ready(function() {
         jQuery(btnObj).removeClass('btn-warning');
         jQuery(btnObj).removeClass('btn-success');
         jQuery(btnObj).addClass('btn-primary');
-        if ((e.which >= 32 && e.which <= 44) || e.which === 47
-                || (e.which >= 58 && e.which <= 64)) {
+        if (!isGoodIntValueOfCharForUrl(e.which)) {
             return false;
         }
+    });
+    jQuery('#labsSiteURL').on('paste', function() {
+    	setTimeout(function() {
+    		var url = jQuery('#labsSiteURL').val();
+    		var newUrl = '';
+    		jQuery.each(url, function(key, value) {
+    			if (isGoodCharacterForUrl(value)) {
+    				newUrl += value;
+    			}
+    		});
+    		jQuery('#labsSiteURL').val(newUrl);
+    	}, 100);
     });
     jQuery('#labsSiteURL').keyup(function(e) {
         if (jQuery(this).val() === '') {
