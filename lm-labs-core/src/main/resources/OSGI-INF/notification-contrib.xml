@@ -51,6 +51,10 @@
     <template name="publishedSite_en" src="templates/publishedSite_en.ftl" />
     <template name="subjectPublishedSite_fr" src="templates/subjectPublishedSite_fr.ftl" />
     <template name="subjectPublishedSite_en" src="templates/subjectPublishedSite_en.ftl" />
+    <template name="createdSite_fr" src="templates/createdSite_fr.ftl" />
+    <template name="createdSite_en" src="templates/createdSite_en.ftl" />
+    <template name="subjectCreatedSite_fr" src="templates/subjectCreatedSite_fr.ftl" />
+    <template name="subjectCreatedSite_en" src="templates/subjectCreatedSite_en.ftl" />
     
     <!-- extention of existing Nuxeo template -->
     <template name="subscriptionsUpdated_fr" src="templates/subscriptionsUpdated_fr.ftl" />

@@ -1,1 +1,1 @@
-Nouveau site publié
+Site publié
