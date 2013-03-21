@@ -1,6 +1,6 @@
 <ul style="list-style: none;">
 	  <li id="suggestDefault">
-	    <input type="radio" name="radioUserInput" value="Everyone">${Context.getMessage('label.security.labs.Everyone')}</input>
+	    <input type="radio" id="radioUserInputEveryone" name="radioUserInput" value="Everyone">${Context.getMessage('label.security.labs.Everyone')}</input>
 	  </li>
 	  <#list suggests as suggest >
 	  <li>

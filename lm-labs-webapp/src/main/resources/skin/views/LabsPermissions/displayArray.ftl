@@ -82,9 +82,9 @@
         &nbsp;
     </div>
     <div class="span8 columns">
-        <#if perm.name == 'Everyone' >
-            ${Context.getMessage('label.security.labs.' + perm.name)}
-            <#assign permName = Context.getMessage('label.security.labs.' + perm.name) />
+        <#if perm.name == 'Everyone' || perm.name == 'members'>
+            ${Context.getMessage('label.security.labs.Everyone')}
+            <#assign permName = Context.getMessage('label.security.labs.Everyone') />
         <#else>
             <#assign displayName = perm.displayName>
             ${perm.name}<#if displayName?length &gt; 0 > (${displayName})</#if>

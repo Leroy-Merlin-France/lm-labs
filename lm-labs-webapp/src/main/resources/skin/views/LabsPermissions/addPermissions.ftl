@@ -60,10 +60,10 @@ function addPerm(){
 		var permission = jQuery("#permissionKey").val();
 		var operationConfirmed = false;
 		var permissionText = jQuery("#permissionText").val();
-	    if (username == "Everyone") {
-	      operationConfirmed = confirm(["DANGER: Souhaitez-vous r\u00E9ellement ajouter la permission '", permissionText, "' \u00E0 'Tout le monde' \u00E0 ce site ? Dans ce cas, votre site sera accessible par l''ensemble des collaborateurs de Leroy Merlin."].join(""));
+	    if (username == "Everyone" || username == "members") {
+	      operationConfirmed = confirm(["DANGER: Souhaitez-vous r\u00E9ellement ajouter la permission '", permissionText, "' \u00E0 'Tout le monde' \u00E0 ce site ?"].join(""));
 	    } else {
-	      operationConfirmed = confirm(["Souhaitez-vous r\u00E9ellement ajouter la permission '", permissionText, "' \u00E0 '", username, "' \u00E0 ce site ? Dans ce cas, votre site sera accessible par cet utilisateur."].join(""));
+	      operationConfirmed = confirm(["Souhaitez-vous r\u00E9ellement ajouter la permission '", permissionText, "' \u00E0 '", username, "' \u00E0 ce site ?"].join(""));
 	    }
 	    if (operationConfirmed) {
 	    	jQuery('#waitingPopup').dialog2('open');

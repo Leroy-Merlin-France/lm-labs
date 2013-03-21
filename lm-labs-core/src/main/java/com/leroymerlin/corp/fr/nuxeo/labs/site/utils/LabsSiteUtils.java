@@ -111,7 +111,7 @@ public final class LabsSiteUtils {
         UserManager userManager = Framework.getService(UserManager.class);
         List<String> excludedUsersList = new ArrayList<String>();
         excludedUsersList.addAll(userManager.getAdministratorsGroups());
-        excludedUsersList.add(userManager.getDefaultGroup());
+        //excludedUsersList.add(userManager.getDefaultGroup());
         excludedUsersList.add(SecurityConstants.ADMINISTRATOR); // TODO
         final List<String> users = new ArrayList<String>(excludedUsersList);
         CollectionUtils.filter(permissions, new Predicate() {

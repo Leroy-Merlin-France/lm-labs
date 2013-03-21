@@ -37,6 +37,12 @@ function displayAddPerm(permText, permKey) {
 	jQuery("#divAddPermissions").dialog2("options", {title: '${Context.getMessage('label.security.labs.addPermissions.title')} "' + permText + '"'});
 	jQuery("#permissionKey").val(permKey);
 	jQuery("#permissionText").val(permText);
+	if (permKey === 'Read'){
+		jQuery("#radioUserInputEveryone").val("Everyone");
+	}
+	else{
+		jQuery("#radioUserInputEveryone").val("members");
+	}
 }
 
 function closeAddPerm() {
