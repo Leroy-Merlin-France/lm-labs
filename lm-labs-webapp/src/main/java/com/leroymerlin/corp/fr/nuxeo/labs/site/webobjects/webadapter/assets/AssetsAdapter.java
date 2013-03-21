@@ -8,12 +8,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.lang.StringUtils;
 import org.nuxeo.ecm.core.api.ClientException;
+import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.core.api.IdRef;
+import org.nuxeo.ecm.platform.picture.api.adapters.PictureResourceAdapter;
 import org.nuxeo.ecm.webengine.WebEngine;
 import org.nuxeo.ecm.webengine.model.Template;
 import org.nuxeo.ecm.webengine.model.WebAdapter;
@@ -161,6 +164,32 @@ public class AssetsAdapter extends CkEditorParametersAdapter {
 
     private LabsSite getSite() {
         return (LabsSite) ctx.getProperty("site");
+    }
+
+    @POST
+    @Path("rotCW/{id}")
+    public Response rotateCW(@PathParam("id") String id) throws ClientException {
+        return doRotate(90, id);
+
+    }
+
+    @POST
+    @Path("@rotCCW/{id}")
+    public Response rotateCCW(@PathParam("id") String id) throws ClientException {
+        return doRotate(-90, id);
+    }
+
+    private Response doRotate(int deg, String id) throws ClientException {
+        CoreSession session = getContext().getCoreSession();
+        DocumentModel doc = getContext().getCoreSession().getDocument(new IdRef(id));
+        PictureResourceAdapter picture = doc.getAdapter(PictureResourceAdapter.class);
+
+        picture.doRotate(deg);
+
+        session.saveDocument(doc);
+        session.save();
+        return Response.ok("Picture has been rotated", MediaType.TEXT_PLAIN).build();
+
     }
 
 }

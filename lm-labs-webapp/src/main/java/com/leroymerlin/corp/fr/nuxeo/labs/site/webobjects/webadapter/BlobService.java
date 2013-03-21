@@ -22,6 +22,7 @@ import org.nuxeo.ecm.core.api.blobholder.BlobHolder;
 import org.nuxeo.ecm.core.api.model.PropertyException;
 import org.nuxeo.ecm.core.convert.api.ConversionService;
 import org.nuxeo.ecm.core.storage.sql.coremodel.SQLBlob;
+import org.nuxeo.ecm.platform.picture.api.adapters.PictureBlobHolder;
 import org.nuxeo.ecm.platform.preview.adapter.PreviewAdapterManager;
 import org.nuxeo.ecm.platform.preview.api.HtmlPreviewAdapter;
 import org.nuxeo.ecm.webengine.model.WebAdapter;
@@ -128,7 +129,14 @@ public class BlobService extends DefaultAdapter {
 	private Object getResponseBlob(DocumentModel doc, Request request,
 			ContentDisposition disposition, BlobHolder blobHolder) {
 		try {
-			Blob blob = blobHolder.getBlob();
+			Blob blob = null;
+			if (blobHolder instanceof PictureBlobHolder){
+				blob = ((PictureBlobHolder)blobHolder).getBlob("Original");
+			}
+			else{
+				blob = blobHolder.getBlob();
+			}
+			//"originalJpeg"
 			EntityTag etag = null;
 			try {
 			    String digest = ((SQLBlob) blob).getBinary()

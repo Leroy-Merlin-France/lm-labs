@@ -63,11 +63,15 @@ jQuery(document).ready(function() {
 		      <img id="img-${doc.id}" src="/nuxeo/nxpicsfile/default/${doc.id}/Thumbnail:content/any_value" class="imgVignette jstree-draggable" d/>
 		    </div>
 		    <div class="pull-right actions" style="width:22px;" >
-				<a class="btn btn-mini btn-danger" onclick="deletePicture('${doc.id}');" title="Effacer" ><i class="icon-remove"></i></a>
+		    	<#if doc.type == "Picture" >
+					<a class="btn btn-mini" onclick="rotatePictureCW('${doc.id}');" title="${Context.getMessage("label.admin.asset.rotateCW")}" ><i class="icon-repeat"></i></a>
+					<a class="btn btn-mini" onclick="rotatePictureCCW('${doc.id}');" title="${Context.getMessage("label.admin.asset.rotateCCW")}" ><i class="icon-undo"></i></a>
+				</#if>
+				<a class="btn btn-mini btn-danger" onclick="deletePicture('${doc.id}');" title="${Context.getMessage("label.admin.asset.delete")}" ><i class="icon-remove"></i></a>
 				<#if doc.facets?seq_contains("HasStoryboard") >
-				<a class="btn btn-mini btn-info open-fancybox" href="${This.path}/@assets/id/${doc.id}/@labsvideo/@views/video_info_popup" title="${Context.getMessage('heading.video.info')}" ><i class="icon-film"></i></a>
-				<div class="player-button" data-viewurl="${Context.modulePath}/${Common.siteDoc(Document).site.URL}/@assets/id/${doc.id}/@labsvideo/@views/player_button" >
-				</div>
+					<a class="btn btn-mini btn-info open-fancybox" href="${This.path}/@assets/id/${doc.id}/@labsvideo/@views/video_info_popup" title="${Context.getMessage('heading.video.info')}" ><i class="icon-film"></i></a>
+					<div class="player-button" data-viewurl="${Context.modulePath}/${Common.siteDoc(Document).site.URL}/@assets/id/${doc.id}/@labsvideo/@views/player_button" >
+					</div>
 				</#if>
 		    </div>
 			<div style="clear:both"></div>

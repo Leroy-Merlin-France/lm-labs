@@ -51,6 +51,29 @@
 				});
 			}
 		}
+		function rotatePictureCW(id) {
+			rotatePicture(id, "rotCW");
+		}
+		function rotatePictureCCW(id) {
+			rotatePicture(id, "rotCCW");
+		}
+		function rotatePicture(id, type) {
+			if (confirm("${Context.getMessage('label.admin.asset.rotateConfirm')}")) {
+				jQuery('#waitingPopup').dialog2('open');
+				jQuery.ajax({
+					async : false,
+					type: 'POST',
+					url: "${This.previous.path}/@assets/" + type + "/" + id,
+					success : function (r) {
+						refreshTreeview();
+					},
+					error : function (r, responseData) {
+						//jQuery.jstree.rollback(data.rlbk);
+						jQuery('#waitingPopup').dialog2('close');
+					}
+				});
+			}
+		}
 		function openAddFileDialog(id) {
 			jQuery('#addFileForm').attr('action', "${formPath}/id/"+id);
 			jQuery("#addFileDialog").dialog2('open');
