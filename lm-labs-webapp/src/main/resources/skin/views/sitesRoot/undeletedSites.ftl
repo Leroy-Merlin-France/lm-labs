@@ -56,7 +56,7 @@
           	<#assign successMsg = Context.getMessage("label.lifeCycle.site.hasDeleted.extended", sit.title) />
           	<#assign errorStatus = Context.getMessage("label.lifeCycle.site.hasNotDeleted.failed") />
           	<#assign errorMsg = Context.getMessage("label.lifeCycle.site.hasNotDeleted.extended", sit.title) />
-          	<a href="#" class="btn btn-danger" onclick="if (confirm('${confirm?js_string}')){deleteSite(this, '${Context.modulePath}/${sit.URL}/@labspublish/delete', {successStatus:'${successStatus?js_string}', errorStatus:'${serrorStatus?js_string}', successMsg:'${successMsg?js_string}', errorMsg:'${errorMsg?js_string}'});}" >${Context.getMessage('command.siteactions.delete')}</a>
+          	<a href="#" class="btn btn-danger" onclick="if (confirm('${confirm?js_string?html}')){deleteSite(this, '${Context.modulePath}/${sit.URL}/@labspublish/delete', {successStatus:'${successStatus?js_string}', errorStatus:'${serrorStatus?js_string}', successMsg:'${successMsg?js_string?html}', errorMsg:'${errorMsg?js_string?html}'});}" >${Context.getMessage('command.siteactions.delete')}</a>
           </#if>
           </td>
           </#if>
