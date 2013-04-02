@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ $# -lt 2 ]
+then
+    echo "Usage: lm-release.sh <current version> <release version> [<new version>]"
+    exit 1;
+fi
 
 # == Setup environnement ==
 if [[ $OSTYPE == "darwin"* ]]; then
