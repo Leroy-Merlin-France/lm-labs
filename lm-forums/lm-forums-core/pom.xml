@@ -64,7 +64,7 @@
       <artifactId>nuxeo-platform-imaging-convert</artifactId>
       <scope>test</scope>
     </dependency>
-
+    
     <dependency>
       <groupId>com.leroymerlin.corp.fr.nuxeo.portal</groupId>
       <artifactId>lm-nuxeo-common-core</artifactId>

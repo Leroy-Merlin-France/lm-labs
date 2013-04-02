@@ -13,7 +13,6 @@
   <artifactId>lm-labs-core</artifactId>
   <name>LM Labs :: Core Types And Adapter</name>
 
-
   <dependencies>
     <dependency>
       <groupId>org.nuxeo.ecm.core</groupId>
