@@ -55,9 +55,9 @@ make_branch() {
     git merge --no-ff release-$RELEASE_VERSION
 
     if [ "x" != "x$3" ]; then
-        echo "============> Creating new Snapshot branch $CURRENT_SNAPSHOT <============"
-        for pom in $poms; do $SED "/<parent>/,/<\/parent>/ s,<version>$CURRENT_SNAPSHOT<,<version>$NEXT_SNAPSHOT<," $pom; done
-        $SEDE "/<project/,/<properties>/ s,<version>$CURRENT_SNAPSHOT</version>,<version>$NEXT_SNAPSHOT</version>," pom.xml
+        echo "============> Creating new Snapshot branch $NEXT_SNAPSHOT <============"
+        for pom in $poms; do $SED "/<parent>/,/<\/parent>/ s,<version>$RELEASE_VERSION<,<version>$NEXT_SNAPSHOT<," $pom; done
+        $SEDE "/<project/,/<properties>/ s,<version>$RELEASE_VERSION</version>,<version>$NEXT_SNAPSHOT</version>," pom.xml
         git commit -a -m "Building new $NEXT_VERSION "
 	    
     fi
