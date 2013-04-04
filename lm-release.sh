@@ -29,6 +29,7 @@ make_branch() {
     poms=`find . -name pom.xml`
 
     git checkout master
+    git pull
     git checkout develop
 
     #== Passer à la version release (nouvelle branche)==
