@@ -24,7 +24,7 @@
 var selectedUrl = '';
 
 function sendToCallFunction(data, href) {
-  window.opener.${This.activeAdapter.getCallFunction()}('${This.activeAdapter.getCalledRef()}', href, jQuery(data.rslt.obj).attr("id"));
+  window.opener.${This.activeAdapter.getCallFunction()}('${This.activeAdapter.getCalledRef()}', href<#if This.activeAdapter.getCallFunction() != "CKEDITOR.tools.callFunction" >, jQuery(data.rslt.obj).attr("id")</#if>);
     window.close();
 }
 
