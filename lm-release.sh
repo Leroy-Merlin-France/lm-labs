@@ -30,6 +30,7 @@ make_branch() {
 
 <<<<<<< HEAD
     git checkout master
+    git pull
     git checkout develop
 =======
 #    hg up develop
