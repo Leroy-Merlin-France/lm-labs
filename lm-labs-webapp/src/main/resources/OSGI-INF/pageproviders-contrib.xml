@@ -90,7 +90,7 @@
       <pattern quoteParameters="true" escapeParameters="true">
         SELECT * FROM LabsNews WHERE ecm:isCheckedInVersion = 0
         AND ecm:path STARTSWITH ? AND dc:creator = ?
-        AND ln:startPublication &lt;= DATE ? AND (ln:endPublication IS NULL OR ln:endPublication > DATE ?)
+        AND ln:startPublication &lt;= TIMESTAMP ? AND (ln:endPublication IS NULL OR ln:endPublication > TIMESTAMP ?)
         ORDER BY ln:startPublication DESC
       </pattern>
     </coreQueryPageProvider>
