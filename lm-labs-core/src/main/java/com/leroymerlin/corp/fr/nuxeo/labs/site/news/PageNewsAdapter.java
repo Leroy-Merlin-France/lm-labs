@@ -91,7 +91,6 @@ public class PageNewsAdapter extends AbstractPage implements PageNews {
     // TODO unit tests
     @Override
     public Collection<DocumentModel> getTopNewsStartingOn(Calendar startDate) throws ClientException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
         StringBuilder query = new StringBuilder();
