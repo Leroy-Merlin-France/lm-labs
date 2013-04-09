@@ -5,7 +5,7 @@
 
   <groupId>com.leroymerlin.labs</groupId>
   <artifactId>lm-labs-parent</artifactId>
-  <version>2.20-SNAPSHOT</version>
+  <version>2.20.0</version>
   <name>LM Labs :: parent project</name>
   <description></description>
   <packaging>pom</packaging>
