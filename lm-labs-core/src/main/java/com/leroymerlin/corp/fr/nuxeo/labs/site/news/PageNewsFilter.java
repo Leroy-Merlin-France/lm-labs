@@ -44,17 +44,9 @@ public class PageNewsFilter implements Filter {
                 Calendar startPublication = news.getStartPublication();
                 Calendar endPublication = news.getEndPublication();
                 
-                Calendar dateDebutJour = new GregorianCalendar(dateComparaison.get(Calendar.YEAR), dateComparaison.get(Calendar.MONTH),dateComparaison.get(Calendar.DAY_OF_MONTH));
-                Calendar dateFinJour = new GregorianCalendar(dateComparaison.get(Calendar.YEAR), dateComparaison.get(Calendar.MONTH),dateComparaison.get(Calendar.DAY_OF_MONTH), 23, 59, 59);
-                
-                if (endPublication == null){
-                    endPublication = (Calendar)dateFinJour.clone();
-                    endPublication.add(Calendar.MONTH, 1);
+                if (startPublication.before(dateComparaison) && (endPublication == null || endPublication.after(dateComparaison))) {
+                    return true;
                 }
-                
-                return Periode.isPeriodsOverlap(new Periode(dateDebutJour,
-                        dateFinJour), new Periode(startPublication, endPublication));
-            } catch (PeriodInvalidException e) {
                 return false;
             }
             catch (Exception e) {

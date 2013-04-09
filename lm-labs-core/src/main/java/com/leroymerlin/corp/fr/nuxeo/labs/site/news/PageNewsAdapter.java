@@ -91,14 +91,13 @@ public class PageNewsAdapter extends AbstractPage implements PageNews {
     // TODO unit tests
     @Override
     public Collection<DocumentModel> getTopNewsStartingOn(Calendar startDate) throws ClientException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String dateStr = sdf.format(startDate.getTime());
+        String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
 
         StringBuilder query = new StringBuilder();
         query.append("SELECT * FROM ").append(Docs.LABSNEWS.type()).append(" WHERE ");
         query.append(NXQL.ECM_PATH).append(" STARTSWITH '").append(doc.getPathAsString().replace("'", "\\'")).append("'");
-        query.append(" AND ").append(LabsNewsAdapter.START_PUBLICATION).append(" >= TIMESTAMP '").append(dateStr).append(" 00:00:00").append("'");
-        query.append(" AND ").append(LabsNewsAdapter.START_PUBLICATION).append(" <= TIMESTAMP '").append(dateStr).append(" 23:59:59").append("'");
+        query.append(" AND ").append(LabsNewsAdapter.START_PUBLICATION).append(" >= TIMESTAMP '").append(dateStr).append("'");
+        query.append(" AND ").append(LabsNewsAdapter.START_PUBLICATION).append(" <= TIMESTAMP '").append(dateStr).append("'");
 
         return getSession().query(query.toString());
     }
