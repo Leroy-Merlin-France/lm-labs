@@ -116,10 +116,10 @@
 <script>
 function callBackAddSite(data) {
 	if (data == "site added"){
-	   	jQuery('#waitingPopup').dialog2('open');
 		document.location.href = '${This.path}/' + jQuery('#labsSiteURL').val();
 	}
 	else{
+		jQuery('#waitingPopup').dialog2('close');
 		jQuery.pnotify({type: 'error', hide: false, title: "", text: data});
 		window.setTimeout(function() {
 			 document.location.href = '${This.path}/';
@@ -128,16 +128,24 @@ function callBackAddSite(data) {
 }
 
 function beforeSubmitCheckSiteUrl() {
+   	jQuery('#waitingPopup').dialog2('open');
 	if (jQuery('#urlAvailability').val() !== 'true') {
 		var ok = verifyUrlAvailability('${Context.modulePath}/@urlAvailability', function() {setCheckUrlButton('complete');}, function() {jQuery('#urlAvailability').val('false');setCheckUrlButton('failed');});
+		if (ok == false) {
+			jQuery('#waitingPopup').dialog2('close');
+		}
 		return ok;
 	}
 	return true;
 }
 
 jQuery(document).ready(function() {
+	jQuery('[form-id=form-labssite]').click(function() {
+		jQuery('#form-labssite').dialog2('close');
+	});
     jQuery('#form-labssite').ajaxForm({
         beforeSubmit:  beforeSubmitCheckSiteUrl,
+        complete: function() {jQuery('#waitingPopup').dialog2('close');},
         success: callBackAddSite
     });
 	jQuery('#verifyUrlAvailability').attr('disabled', true);
