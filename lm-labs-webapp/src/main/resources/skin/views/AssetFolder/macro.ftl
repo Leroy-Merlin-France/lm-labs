@@ -8,7 +8,7 @@
 	  <#if !doc.isFolder >
 	  <li class="">
 	  <div class="thumbnail" style="background-color:white;" >
-	  <#assign paramValue = path + "/" + doc.name + "/@blob" + endUrl />
+	  <#assign paramValue = path + "/" + doc.name + "/@view/Thumbnail" + endUrl />
 	  <a class="sendToCallFunction" data-url="${paramValue}" data-docid="${doc.id}" >
 	    <img src="${path}/${doc.name}/@blob${endUrl}" width="120"/>
 	    <p style="font-size: smaller;margin: 3px;" >${doc.title?html}</p>
