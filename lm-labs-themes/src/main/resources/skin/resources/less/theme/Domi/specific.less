@@ -17,6 +17,19 @@
 @labsBoxShadowHtmlElement: 0px 0px 10px #BBB;
 @labsPaddingHtmlElement: 10px;
 
+// override Cerulean's non-dynamic bootswatch.less 2.2.2
+.navbar {
+	.brand {
+	  // Vertically center the text given @navbarHeight
+	  padding: ((@navbarHeight - @baseLineHeight) / 2) 20px ((@navbarHeight - @baseLineHeight) / 2);
+	}
+	.nav > li > a {
+	  // Vertically center the text given @navbarHeight
+	  padding: (((@navbarHeight - @baseLineHeight) / 2) - 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+	}
+}
+// END override
+
 // Labs
 // buttons' icons color
 .btn-primary > [class*="icon-"], .btn-danger > [class*="icon-"], .btn-warning > [class*="icon-"] {
