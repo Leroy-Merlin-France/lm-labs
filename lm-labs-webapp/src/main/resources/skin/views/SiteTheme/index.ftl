@@ -139,12 +139,12 @@
 								      	<a class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-cog"> </i>Actions <span class="caret"></span></a>
 										<ul class="dropdown-menu" style="left: auto;right: 0px;">
 											<li>
-												<a href="#" rowIdx="${row_index}" rel="divConfigGadget" ><i class="icon-gift"></i>${Context.getMessage('command.HtmlPage.row.widgets.config.button')}</a>
+												<a rowIdx="${row_index}" rel="divConfigGadget" ><i class="icon-gift"></i>${Context.getMessage('command.HtmlPage.row.widgets.config.button')}</a>
 												<#if rows?first != row>
-													<a href="#" onClick="javascript:ajaxMove2('${Context.modulePath}/${mySite.URL}/@element-sidebar/r/${row_index}/moveUpElement', '${This.path}#sectionSidebar');" title="Monter" alt="Monter"><i class="icon-arrow-up"></i>Monter</a>
+													<a onClick="javascript:ajaxMove2('${Context.modulePath}/${mySite.URL}/@element-sidebar/r/${row_index}/moveUpElement', '${This.path}#sectionSidebar');" title="Monter" alt="Monter"><i class="icon-arrow-up"></i>Monter</a>
 					    						</#if>
 					    						<#if rows?last != row>
-					    							<a href="#" onClick="javascript:ajaxMove2('${Context.modulePath}/${mySite.URL}/@element-sidebar/r/${row_index}/moveDownElement', '${This.path}#sectionSidebar');" title="Descendre" alt="Descendre"><i class="icon-arrow-down"></i>Descendre</a>
+					    							<a onClick="javascript:ajaxMove2('${Context.modulePath}/${mySite.URL}/@element-sidebar/r/${row_index}/moveDownElement', '${This.path}#sectionSidebar');" title="Descendre" alt="Descendre"><i class="icon-arrow-down"></i>Descendre</a>
 					    						</#if>
 											</li>
 										</ul>

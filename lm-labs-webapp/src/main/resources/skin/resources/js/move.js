@@ -48,12 +48,12 @@ function ajaxMove2(url, path){
 		url: url,
 		data: '',
 		success: function(msg){
-			//alert('Sauvegardé');
-			jQuery('#waitingPopup').dialog2('close');
+			// si location.reload : ne pas fermer la fenêtre d'attente !
+			//jQuery('#waitingPopup').dialog2('close');
 			//TODO vérifier le doublement des ckeditor (avec annul / modif) quand  on enlève le
 			// rechargement et reload, car normalement, pas besoin
-			document.location.href=path;
-			window.location.reload();
+			window.location.href=path;
+			window.location.reload(true);
 		},
 		error: function(msg){
 //			alert( msg.responseText );
