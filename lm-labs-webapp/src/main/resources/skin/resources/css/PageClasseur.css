@@ -51,7 +51,7 @@
 	cursor: pointer;
 }
 
-table.classeurFiles tr.hidden td {
+table.classeurFiles tr.hiddenThrough td {
 	font-style: italic;
 	text-decoration: line-through;
 }

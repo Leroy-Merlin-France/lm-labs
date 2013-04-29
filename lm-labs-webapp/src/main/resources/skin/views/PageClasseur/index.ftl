@@ -268,7 +268,7 @@
   </thead>
   <tbody>
   <#list folder.getFiles() as child>
-  <tr class="main ${child.id}<#if child.facets?seq_contains("LabsHidden")> hidden editblock</#if>">
+  <tr class="main ${child.id}<#if child.facets?seq_contains("LabsHidden")> hiddenThrough editblock</#if>">
     <td>
       <img title="${child.type}" alt="${child.type}/" src="/nuxeo${child.common.icon}" />
     </td>

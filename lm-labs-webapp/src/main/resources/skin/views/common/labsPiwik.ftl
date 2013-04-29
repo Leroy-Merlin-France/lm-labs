@@ -13,7 +13,6 @@ var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", ${mySite.piwikId});
 piwikTracker.trackPageView();
 piwikTracker.enableLinkTracking();
 } catch( err ) {}
-</script>
-</script><noscript><p><img src="http://localhost/piwik/piwik.php?idsite=${mySite.piwikId}" style="border:0" alt="" /></p></noscript>
+</script><noscript><p><img src="http://piwik.cocfr2.fr.corp.leroymerlin.com/piwik.php?idsite=${mySite.piwikId}" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tracking Code -->
 </#if>
