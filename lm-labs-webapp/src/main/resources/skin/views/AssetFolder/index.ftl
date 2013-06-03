@@ -180,10 +180,10 @@ $(document).ready(function() {
     	}
     	var urlParams = sep + 'callFunction=${callFunction}&calledRef=${calledRef}';
     	if (isCommon){
-    		$("#fileContentCommon").load(url + urlParams);
+    		$("#fileContentCommon").load(encodeURI(url) + urlParams);
     	}
     	else{
-    		$("#fileContent").load(url + urlParams);
+    		$("#fileContent").load(encodeURI(url) + urlParams);
     	}
     }
     

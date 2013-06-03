@@ -41,6 +41,13 @@ jQuery(document).ready(function() {
         'centerOnScroll': true
 	}
 	);
+	jQuery('a.open-fancybox.fancybox-image').fancybox(
+	{
+        'width'				: '75%',
+        'type'          : 'image',
+        'centerOnScroll': true
+	}
+	);
 	jQuery.each(jQuery('div.player-button'), function() {
 		jQuery(this).load(jQuery(this).data('viewurl'));
     });
@@ -60,13 +67,20 @@ jQuery(document).ready(function() {
 		  <#--We affect the same 'id' attribute to all element in this div, because JsTree needs -->
 		  <div id="${doc.id}" data-docid="${doc.id}" class="assetVignette jstree-draggable" title="${doc.name}">
 		    <div id="divimg-${doc.id}" class="pull-left" style="min-height: 70%;" >
-		      <img id="img-${doc.id}" src="/nuxeo/nxpicsfile/default/${doc.id}/Thumbnail:content/any_value" class="imgVignette jstree-draggable" d/>
+		    	<#if doc.type == "Picture" >
+		      <a class="open-fancybox fancybox-image" href="${This.path}/@assets/id/${doc.id}/@blob">
+				</#if>
+		      <img id="img-${doc.id}" src="/nuxeo/nxpicsfile/default/${doc.id}/Thumbnail:content/any_value" class="imgVignette jstree-draggable" />
+		    	<#if doc.type == "Picture" >
+		      </a>
+				</#if>
 		    </div>
 		    <div class="pull-right actions" style="width:22px;" >
 		    	<#if doc.type == "Picture" >
 					<a class="btn btn-mini" onclick="rotatePictureCW('${doc.id}');" title="${Context.getMessage("label.admin.asset.rotateCW")}" ><i class="icon-repeat"></i></a>
 					<a class="btn btn-mini" onclick="rotatePictureCCW('${doc.id}');" title="${Context.getMessage("label.admin.asset.rotateCCW")}" ><i class="icon-undo"></i></a>
 				</#if>
+				<a class="btn btn-mini btn-primary" href="${This.path}/@assets/id/${doc.id}/@blob" title="Télécharger" ><i class="icon-download-alt"></i></a>
 				<a class="btn btn-mini btn-danger" onclick="deletePicture('${doc.id}');" title="${Context.getMessage("label.admin.asset.delete")}" ><i class="icon-remove"></i></a>
 				<#if doc.facets?seq_contains("HasStoryboard") >
 					<a class="btn btn-mini btn-info open-fancybox" href="${This.path}/@assets/id/${doc.id}/@labsvideo/@views/video_info_popup" title="${Context.getMessage('heading.video.info')}" ><i class="icon-film"></i></a>

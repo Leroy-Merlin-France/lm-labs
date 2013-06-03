@@ -21,7 +21,7 @@
 	<div  class="actions">
 		<input type="hidden" id="permissionKey" value=""/>
 		<input type="hidden" id="permissionText" value=""/>
-		<button id="addPerm" onClick="javascript:addPerm();" title="${Context.getMessage('command.security.addPerm')}" class="btn btn-primary" style="margin-left:20px;" >${Context.getMessage('command.security.addPerm')}</button>
+		<button id="addPerm" onClick="addPerm();" title="${Context.getMessage('command.security.addPerm')}" class="btn btn-primary" style="margin-left:20px;" >${Context.getMessage('command.security.addPerm')}</button>
 	</div>
 
 <script type="text/javascript">
@@ -63,7 +63,7 @@ function addPerm(){
 	    if (username == "Everyone" || username == "members") {
 	      operationConfirmed = confirm(["DANGER: Souhaitez-vous r\u00E9ellement ajouter la permission '", permissionText, "' \u00E0 'Tout le monde' \u00E0 ce site ?"].join(""));
 	    } else {
-	      operationConfirmed = confirm(["Souhaitez-vous r\u00E9ellement ajouter la permission '", permissionText, "' \u00E0 '", username, "' \u00E0 ce site ?"].join(""));
+	      operationConfirmed = true;
 	    }
 	    if (operationConfirmed) {
 	    	jQuery('#waitingPopup').dialog2('open');
