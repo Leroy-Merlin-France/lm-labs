@@ -73,8 +73,8 @@ public class LabsSiteAdapter extends AbstractLabsBase implements LabsSite {
     }
 
     public static final int NB_LAST_UPDATED_DOCS = 20;
-
     public static final int NB_LAST_UPDATED_NEWS_DOCS = 20;
+    
 
     public static final String PROPERTY_SITE_TEMPLATE = Schemas.LABSSITE
             .prefix() + ":siteTemplate";
