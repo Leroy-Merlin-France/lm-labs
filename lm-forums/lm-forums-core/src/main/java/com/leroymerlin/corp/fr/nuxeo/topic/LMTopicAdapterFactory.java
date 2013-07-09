@@ -5,11 +5,11 @@ import org.nuxeo.ecm.core.api.adapter.DocumentAdapterFactory;
 
 public class LMTopicAdapterFactory implements DocumentAdapterFactory {
 
-	@Override
-	public Object getAdapter(DocumentModel doc, Class<?> klass) {
-		if(doc.getType().equals("LMForumTopic")) {
-			return new LMTopicImpl(doc);
-		}
-		return null;
-	}
+    @Override
+    public Object getAdapter(DocumentModel doc, Class<?> klass) {
+        if (doc.getType().equals("LMForumTopic")) {
+            return new LMTopicImpl(doc);
+        }
+        return null;
+    }
 }

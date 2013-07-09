@@ -35,7 +35,8 @@ public class SiteManagerImpl extends DefaultComponent implements SiteManager {
     private static final PathRef SITES_ROOT_REF = new PathRef(
             "/" + Docs.DEFAULT_DOMAIN.docName() + "/" + Docs.SITESROOT.docName());
     private static final PathRef COMMON_ASSETS_REF = new PathRef(
-            "/" + Docs.DEFAULT_DOMAIN.docName() + "/" + Docs.SITESROOT.docName() + "/" + LabsSiteConstants.Docs.COMMONSASSETS.docName());
+            "/" + Docs.DEFAULT_DOMAIN.docName() + "/" + Docs.SITESROOT.docName() + "/" +
+            LabsSiteConstants.Docs.COMMONSASSETS.docName());
 
     @Override
     public LabsSite createSite(CoreSession session, String title, String url)
@@ -115,7 +116,8 @@ public class SiteManagerImpl extends DefaultComponent implements SiteManager {
     private void createCommonAssetsDoc(CoreSession session) throws ClientException {
         if (!session.exists(COMMON_ASSETS_REF)) {
             DocumentModel commonsAssets = session.createDocumentModel(
-                    "/" + Docs.DEFAULT_DOMAIN.docName() + "/" + Docs.SITESROOT.docName() + "/", LabsSiteConstants.Docs.COMMONSASSETS.docName(),
+                    "/" + Docs.DEFAULT_DOMAIN.docName() + "/" + Docs.SITESROOT.docName() +
+                    "/", LabsSiteConstants.Docs.COMMONSASSETS.docName(),
                     LabsSiteConstants.Docs.COMMONSASSETS.type());
             commonsAssets.setPropertyValue("dc:title", "Common assets of sites");
             commonsAssets = session.createDocument(commonsAssets);
