@@ -23,65 +23,67 @@ import com.leroymerlin.corp.fr.nuxeo.labs.site.webobjects.NotifiablePageResource
 import com.leroymerlin.corp.fr.nuxeo.topic.LMTopic;
 
 @WebObject(type = "PageForum", superType = "LabsPage")
-public class LMForumResource extends NotifiablePageResource{
-	
-//private static final Log log = LogFactory.getLog(LMForumResource.class);
-    
-	LMForum lmForum;
-	
-	@Override
+public class LMForumResource extends NotifiablePageResource {
+
+    // private static final Log log = LogFactory.getLog(LMForumResource.class);
+
+    LMForum lmForum;
+
+    @Override
     public void initialize(Object... args) {
         super.initialize(args);
-        ctx.getEngine()
-                .getRendering()
+        ctx.getEngine().getRendering()
                 .setSharedVariable("forum", getLabsForum());
     }
 
     public LMForum getLabsForum() {
         CoreSession session = getCoreSession();
         LMForum forum = Tools.getAdapter(LMForum.class, doc, session);
-        afn = new AuthorFullName(new HashMap<String, String>(), LabsSiteConstants.Forum.FORUM_CREATOR);
+        afn = new AuthorFullName(new HashMap<String, String>(),
+                LabsSiteConstants.Forum.FORUM_CREATOR);
         List<DocumentModel> listModelDoc = new LinkedList<DocumentModel>();
         try {
             for (LMTopic aLmTopic : forum.getTopics(session))
                 listModelDoc.add(aLmTopic.getDocument());
-            
+
             afn.loadFullName(listModelDoc);
         } catch (ClientException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-       
+
         return forum;
     }
-    
+
     @Override
     @POST
     public Response doPost() {
-    	LMTopic topic = null;
+        LMTopic topic = null;
         try {
-        
-           FormData form = ctx.getForm();
-           String pTitle = form.getString(AbstractLabsBase.DC_TITLE);
-           CoreSession session = ctx.getCoreSession();
-           LMForum lmForum = Tools.getAdapter(LMForum.class, doc, session);
-           topic = lmForum.addTopic(session, pTitle);
-           topic.setDescription(form.getString(AbstractLabsBase.DC_DESCRIPTION));
-           topic.setCommentable(true);
-           save(topic);
 
-           return redirect(getPath() + "/");
+            FormData form = ctx.getForm();
+            String pTitle = form.getString(AbstractLabsBase.DC_TITLE);
+            CoreSession session = ctx.getCoreSession();
+            LMForum lmForum = Tools.getAdapter(LMForum.class, doc, session);
+            topic = lmForum.addTopic(session, pTitle);
+            topic.setDescription(form
+                    .getString(AbstractLabsBase.DC_DESCRIPTION));
+            topic.setCommentable(true);
+            save(topic);
+
+            return redirect(getPath() + "/");
         } catch (ClientException e) {
             throw WebException.wrap(e);
         }
     }
-    
+
     /**
      * save a new topic
+     * 
      * @param topic
      * @return a {@link DocumentModel}
      */
-    private DocumentModel save(LMTopic topic){
+    private DocumentModel save(LMTopic topic) {
         CoreSession session = getCoreSession();
         DocumentModel newDoctopic = null;
         try {
