@@ -115,6 +115,12 @@ public class LabsNewsResource extends PageResource {
     @Override
     public Page getPage() throws ClientException {
         CoreSession session = ctx.getCoreSession();
+        Page page = Tools.getAdapter(Page.class, doc, session);
+        return page;
+    }
+
+    public Page getParentPage() throws ClientException {
+        CoreSession session = ctx.getCoreSession();
         DocumentModel parentDoc = session.getDocument(doc.getParentRef());
         PageNews pageNews = Tools.getAdapter(PageNews.class, parentDoc, session);
         return pageNews;
