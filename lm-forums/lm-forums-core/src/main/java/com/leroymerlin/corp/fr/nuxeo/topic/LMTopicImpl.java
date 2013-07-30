@@ -31,7 +31,7 @@ public class LMTopicImpl extends AbstractPage implements LMTopic {
         comment.setPropertyValue("comment:author", session.getPrincipal()
                 .getName());
         comment.setPropertyValue("comment:text", cText);
-        comment.setPropertyValue("comment:creationDate", new Date());
+        comment.setPropertyValue("comment:creationDate", new Date()); 
 
         return comment;
     }

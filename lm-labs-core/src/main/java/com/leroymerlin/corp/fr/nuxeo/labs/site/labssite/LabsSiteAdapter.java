@@ -34,10 +34,13 @@ import org.nuxeo.ecm.core.api.PathRef;
 import org.nuxeo.ecm.core.api.UnrestrictedSessionRunner;
 import org.nuxeo.ecm.core.api.impl.DocumentModelListImpl;
 import org.nuxeo.ecm.core.api.model.PropertyException;
+import org.nuxeo.ecm.core.api.security.SecurityConstants;
 import org.nuxeo.ecm.core.query.sql.NXQL;
 import org.nuxeo.runtime.api.Framework;
 
 import com.leroymerlin.common.core.security.LMPermission;
+import com.leroymerlin.common.core.security.SecurityData;
+import com.leroymerlin.common.core.security.SecurityDataHelper;
 import com.leroymerlin.corp.fr.nuxeo.labs.base.AbstractLabsBase;
 import com.leroymerlin.corp.fr.nuxeo.labs.filter.DocUnderVisiblePageFilter;
 import com.leroymerlin.corp.fr.nuxeo.labs.site.Page;
@@ -74,7 +77,6 @@ public class LabsSiteAdapter extends AbstractLabsBase implements LabsSite {
 
     public static final int NB_LAST_UPDATED_DOCS = 20;
     public static final int NB_LAST_UPDATED_NEWS_DOCS = 20;
-    
 
     public static final String PROPERTY_SITE_TEMPLATE = Schemas.LABSSITE
             .prefix() + ":siteTemplate";
@@ -340,6 +342,65 @@ public class LabsSiteAdapter extends AbstractLabsBase implements LabsSite {
     @Override
     public DocumentModel getAssetsDoc() throws ClientException {
         return getSession().getChild(doc.getRef(), Docs.ASSETS.docName());
+    }
+
+    @Override
+    public DocumentModel getAssetsPublicDoc(LabsSiteConstants.Docs asset)
+            throws ClientException {
+
+        DocumentModel docAssets = getAssetsDoc();
+        String path = docAssets.getPathAsString() + "/" + asset.docName();
+        PathRef pathRef = new PathRef(path);
+
+        if (getSession().exists(pathRef)) {
+            return getSession().getDocument(pathRef);
+        }
+
+        DocumentModel docAssetsPublic = getSession().createDocumentModel(
+                docAssets.getPathAsString(), asset.docName(), asset.type());
+        docAssetsPublic.setPropertyValue("dc:title",
+                StringUtils.capitalize(asset.docName()));
+
+        docAssetsPublic = getSession().createDocument(docAssetsPublic);
+        return docAssetsPublic;
+    }
+
+    @Override
+    public DocumentModel getAssetsPublicDoc(LabsSiteConstants.Docs asset,
+            String name) throws ClientException {
+
+        final String nameVal = name;
+
+        final DocumentModel assetsPublic = getAssetsPublicDoc(asset);
+        PathRef pathRef = new PathRef(assetsPublic.getPathAsString() + "/"
+                + nameVal);
+
+        if (!getSession().exists(pathRef)) {
+            UnrestrictedSessionRunner runner = new UnrestrictedSessionRunner(
+                    getSession()) {
+                @Override
+                public void run() throws ClientException {
+                    DocumentModel assets = session.createDocumentModel(
+                            assetsPublic.getPathAsString(), nameVal,
+                            LabsSiteConstants.Docs.COMMONSASSETS.type());
+                    assets.setPropertyValue("dc:title",
+                            StringUtils.capitalize(nameVal));
+                    session.createDocument(assets);
+
+                    SecurityData sd = SecurityDataHelper
+                            .buildSecurityData(assets);
+                    sd.addModifiablePrivilege(SecurityConstants.EVERYONE,
+                            SecurityConstants.WRITE, true);
+                    SecurityDataHelper.updateSecurityOnDocument(assets, sd);
+                    assets = session.saveDocument(assets);
+
+                    session.save();
+                }
+            };
+            runner.runUnrestricted();
+        }
+
+        return getSession().getDocument(pathRef);
     }
 
     @Override

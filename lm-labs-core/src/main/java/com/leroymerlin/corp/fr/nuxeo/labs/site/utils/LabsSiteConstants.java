@@ -138,7 +138,8 @@ public final class LabsSiteConstants {
     public enum Docs {
         DEFAULT_DOMAIN("Domain", "default-domain"), SITESROOT("SitesRoot",
                 "sites"), SITE("Site", StringUtils.EMPTY), TREE("Tree", "tree"), ASSETS(
-                "Assets", "assets"), PAGE("Page", StringUtils.EMPTY), PAGEBLOCS(
+                "Assets", "assets"), ASSETS_FORUMS("Assets", "assetsForums"), ASSETS_NEWS(
+                "Assets", "assetsNews"), PAGE("Page", StringUtils.EMPTY), PAGEBLOCS(
                 "PageBlocs", StringUtils.EMPTY), EXTERNAL_URL("ExternalURL",
                 StringUtils.EMPTY), EXTERNAL_URLS("OrderedFolder",
                 "externalUrls"), PAGENEWS("PageNews", StringUtils.EMPTY), LABSNEWS(
