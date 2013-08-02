@@ -39,7 +39,7 @@
 
 				<#list allTopics as topic>
 					<#if !topic.document.facets?seq_contains("LabsHidden") || canWrite || Context.principal.name == topic.document.author >
-					  	<tr <#if topic.document.facets?seq_contains("LabsHidden")> class="hidden"</#if>>
+					  	<tr <#if topic.document.facets?seq_contains("LabsHidden")> class="hiddenThrough"</#if>>
 					  		<td>
 					  			<a href="${This.path}/${topic.document.name}">
 						  			<strong>${topic.title}</strong><br/>
