@@ -2,7 +2,7 @@
 <#if mySite?? && mySite.piwikEnabled >
 <!-- Piwik -->
 <script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://analytics.fr.corp.leroymerlin.com/" : "http://piwik.cocfr2.fr.corp.leroymerlin.com/");
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://analytics.fr.corp.leroymerlin.com/" : "http://analytics.fr.corp.leroymerlin.com/");
 <#--
 var pkBaseURL = (("https:" == document.location.protocol) ? "https://10.2.55.196/piwik/" : "http://10.2.55.196/piwik/");
 -->
