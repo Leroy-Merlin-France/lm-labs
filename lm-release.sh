@@ -37,8 +37,8 @@ make_branch() {
     #git checkout -b release-$RELEASE_VERSION develop
 
     echo "============> Creating branch $RELEASE_VERSION <=========================="
-    #for pom in $poms; do $SED "/<parent>/,/<\/parent>/ s,<version>$CURRENT_SNAPSHOT<,<version>$RELEASE_VERSION<," $pom; done
-    #$SEDE "/<project/,/<properties>/ s,<version>$CURRENT_SNAPSHOT</version>,<version>$RELEASE_VERSION</version>," pom.xml
+    for pom in $poms; do $SED "/<parent>/,/<\/parent>/ s,<version>$CURRENT_SNAPSHOT<,<version>$RELEASE_VERSION<," $pom; done
+    $SEDE "/<project/,/<properties>/ s,<version>$CURRENT_SNAPSHOT</version>,<version>$RELEASE_VERSION</version>," pom.xml
 
     #git commit -a -m "Prepare release $RELEASE_VERSION"
 
