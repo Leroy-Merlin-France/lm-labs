@@ -28,13 +28,9 @@ make_branch() {
     echo "============> Finding pom(s).xml       <=================================="
     poms=`find . -name pom.xml`
 
-<<<<<<< HEAD
     git checkout master
     git pull
     git checkout develop
-=======
-#    hg up develop
->>>>>>> adbf28d280e2f5ca91053c4f4e9005c617d5afca
 
     #== Passer à la version release (nouvelle branche)==
 

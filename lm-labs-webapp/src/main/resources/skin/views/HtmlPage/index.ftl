@@ -26,7 +26,7 @@
 			jQuery(document).ready(function() {
 				setOpensocialOptions('${contextPath}/', '${Context.locale.language}');
 				<#if basicSectionsViewMode == "tabbed" || basicSectionsViewMode == "pills" >
-				jQuery('div.tab-pane.active').each(function(index, value) {
+				jQuery('div.tab-pane').each(function(index, value) {
 					initOpensocialGadgets(value);
 				});
 				<#elseif basicSectionsViewMode == "carousel" >
