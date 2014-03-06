@@ -1,4 +1,4 @@
-table.forumTopics tr.hidden td {
+table.forumTopics tr.hiddenThrough td {
 	font-style: italic;
 	text-decoration: line-through;
 }

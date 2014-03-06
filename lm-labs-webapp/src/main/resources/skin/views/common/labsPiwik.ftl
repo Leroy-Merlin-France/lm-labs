@@ -2,7 +2,7 @@
 <#if mySite?? && mySite.piwikEnabled >
 <!-- Piwik -->
 <script type="text/javascript">
-var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.cocfr2.fr.corp.leroymerlin.com/" : "http://piwik.cocfr2.fr.corp.leroymerlin.com/");
+var pkBaseURL = (("https:" == document.location.protocol) ? "https://analytics.fr.corp.leroymerlin.com/" : "http://analytics.fr.corp.leroymerlin.com/");
 <#--
 var pkBaseURL = (("https:" == document.location.protocol) ? "https://10.2.55.196/piwik/" : "http://10.2.55.196/piwik/");
 -->
@@ -13,6 +13,6 @@ var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", ${mySite.piwikId});
 piwikTracker.trackPageView();
 piwikTracker.enableLinkTracking();
 } catch( err ) {}
-</script><noscript><p><img src="http://piwik.cocfr2.fr.corp.leroymerlin.com/piwik.php?idsite=${mySite.piwikId}" style="border:0" alt="" /></p></noscript>
+</script><noscript><p><img src="http://analytics.fr.corp.leroymerlin.com/piwik.php?idsite=${mySite.piwikId}" style="border:0" alt="" /></p></noscript>
 <!-- End Piwik Tracking Code -->
 </#if>
