@@ -24,7 +24,8 @@ public class AdminSiteTreeSerializer extends AbstractJSONSerializer {
 
     protected WebContext ctx;
 
-    private static final Log LOG = LogFactory.getLog(AdminSiteTreeSerializer.class);
+    private static final Log LOG = LogFactory
+            .getLog(AdminSiteTreeSerializer.class);
 
     public AdminSiteTreeSerializer() {
         super();
@@ -47,9 +48,9 @@ public class AdminSiteTreeSerializer extends AbstractJSONSerializer {
     protected JSONObject item2JSON(TreeItem item, JSONArray children) {
         JSONObject json = new JSONObject();
 
-        String text = (ctx != null && LabsSiteConstants.Docs.ASSETS.type().equals(
-                getText(item))) ? ctx.getMessage("label.admin.asset.rootNode")
-                : getText(item);
+        String text = (ctx != null && LabsSiteConstants.Docs.ASSETS.type()
+                .equals(getText(item))) ? ctx
+                .getMessage("label.admin.asset.rootNode") : getText(item);
         json.element("data", text);
 
         JSONObject attrs = new JSONObject();
@@ -66,23 +67,24 @@ public class AdminSiteTreeSerializer extends AbstractJSONSerializer {
                     + doc.getPathAsString() + ": " + e.getCause());
         }
         Page page = Tools.getAdapter(Page.class, doc, session);
-        if (page != null){
+        if (page != null) {
             try {
                 metadata.put("isPageTemplate", page.isElementTemplate());
             } catch (ClientException e) {
                 LOG.error("Unable to get template page of document "
                         + doc.getPathAsString() + ": " + e.getCause());
             }
-        }
-        else{
+        } else {
             metadata.put("isPageTemplate", false);
         }
         try {
-            SiteDocument siteAdapter = Tools.getAdapter(SiteDocument.class, doc, session);
+            SiteDocument siteAdapter = Tools.getAdapter(SiteDocument.class,
+                    doc, session);
             if (siteAdapter != null) {
                 LabsSite site = siteAdapter.getSite();
                 if (page == null) {
-                    metadata.put("url", URIUtils.quoteURIPathComponent(siteAdapter.getSite().getURL(), true));
+                    metadata.put("url", URIUtils.quoteURIPathComponent(
+                            siteAdapter.getSite().getURL(), true));
                 } else {
                     metadata.put("url", siteAdapter.getResourcePath());
                 }

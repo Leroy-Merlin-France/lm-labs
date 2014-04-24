@@ -24,8 +24,7 @@ public class SiteTreeSerializer extends AbstractJSONSerializer {
     protected JSONObject item2JSON(TreeItem item, JSONArray children) {
         JSONObject json = new JSONObject();
         json.element("text", item.getLabel())
-                .element("id", item.getPath()
-                        .toString())
+                .element("id", item.getPath().toString())
                 .element("href", getUrl(item));
         json.element("expanded", item.isExpanded());
         if (item.isContainer()) {
@@ -39,7 +38,5 @@ public class SiteTreeSerializer extends AbstractJSONSerializer {
         }
         return json;
     }
-
-
 
 }

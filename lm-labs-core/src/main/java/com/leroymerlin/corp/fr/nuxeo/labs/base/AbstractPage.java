@@ -57,7 +57,7 @@ public abstract class AbstractPage extends AbstractLabsBase implements Page {
                 .replace(site.getTree().getPathAsString(), "");
     }
 
-    private LabsSite getSite() throws ClientException {
+    protected LabsSite getSite() throws ClientException {
         DocumentModel parentDoc = doc;
         CoreSession session = getSession();
 		while (parentDoc != null && !parentDoc.getType()

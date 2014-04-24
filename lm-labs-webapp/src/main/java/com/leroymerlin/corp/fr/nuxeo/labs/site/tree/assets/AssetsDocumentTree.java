@@ -19,7 +19,6 @@
 
 package com.leroymerlin.corp.fr.nuxeo.labs.site.tree.assets;
 
-
 import org.nuxeo.ecm.core.api.DocumentModel;
 import org.nuxeo.ecm.webengine.model.WebContext;
 import org.nuxeo.ecm.webengine.ui.tree.ContentProvider;
@@ -32,26 +31,25 @@ import com.leroymerlin.corp.fr.nuxeo.labs.site.tree.AbstractDocumentTree;
  */
 public class AssetsDocumentTree extends AbstractDocumentTree {
     
-    private boolean isCommon;
-
+    private String param;
+    
     public AssetsDocumentTree(WebContext ctx, DocumentModel rootDoc) {
-        this(ctx, rootDoc, false);
+        this(ctx, rootDoc, null);
     }
 
-    public AssetsDocumentTree(WebContext ctx, DocumentModel rootDoc, boolean isCommon) {
+    public AssetsDocumentTree(WebContext ctx, DocumentModel rootDoc, String param) {
         super(ctx, rootDoc);
-        this.isCommon = isCommon;
+        this.param = param;
     }
 
     @Override
     protected JSonTreeSerializer getSerializer(WebContext ctx) {
-        return new AssetsTreeSerializer(isCommon);
+        return new AssetsTreeSerializer(param);
     }
 
     @Override
     protected ContentProvider getProvider(WebContext ctx) {
         return new AssetsContentProvider(ctx.getCoreSession());
     }
-
 
 }

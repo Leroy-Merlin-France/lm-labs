@@ -43,7 +43,7 @@
 		    	jQuery('#waitingPopup').dialog2('close');
 		    	jQuery("#divDislayArray")[0].innerHTML = '<img src="${skinPath}/images/loading.gif" />';
 				jQuery("#divDislayArray").load('${This.path}/@labspermissions');
-				initModalLabsPermissions();
+				// initModalLabsPermissions(); Delete sinon n'affiche pas le bouton valider dans les popups
 		    },
 		    error: function(data){
 		    	jQuery('#waitingPopup').dialog2('close');
@@ -70,7 +70,7 @@ function unblockInherits(permission){
 		    	jQuery('#waitingPopup').dialog2('close');
 		    	jQuery("#divDislayArray")[0].innerHTML = '<img src="${skinPath}/images/loading.gif" />';
 				jQuery("#divDislayArray").load('${This.path}/@labspermissions');
-				initModalLabsPermissions();
+				// initModalLabsPermissions(); Delete sinon n'affiche pas le bouton valider dans les popups
 		    },
 		    error: function(data){
 		    	jQuery('#waitingPopup').dialog2('close');

@@ -40,6 +40,13 @@ public abstract class NotifiablePageResource extends PageResource {
                         LOG.warn("Unable to get adapter for " + page.getDocument().getPathAsString());
                     }
                 }
+            } else if (Docs.HTMLPAGE.type().equals(doc.getType())) {
+            	PageSubscription subscription = Tools.getAdapter(PageSubscription.class, doc, session);
+                if (subscription != null) {
+                    subscription.subscribe(ctx.getPrincipal().getName());
+                } else {
+                    LOG.warn("Unable to get adapter for " + doc.getPathAsString());
+                }
             }
         } catch (Exception e) {
             LOG.error(e, e);
@@ -61,6 +68,11 @@ public abstract class NotifiablePageResource extends PageResource {
                     if (subscription != null) {
                         subscription.unsubscribe(ctx.getPrincipal().getName());
                     }
+                }
+            } else if (Docs.HTMLPAGE.type().equals(doc.getType())) {
+            	PageSubscription subscription = Tools.getAdapter(PageSubscription.class, doc, session);
+                if (subscription != null) {
+                    subscription.unsubscribe(ctx.getPrincipal().getName());
                 }
             }
         } catch (Exception e) {

@@ -13,14 +13,14 @@ import com.leroymerlin.common.core.security.PermissionsHelper;
 
 public final class LabsSiteConstants {
 
-    public final class Comments{
+    public final class Comments {
         public static final String COMMENT_AUTHOR = "comment:author";
         public static final String COMMENT_TEXT = "comment:text";
         public static final String COMMENT_CREATION_DATE = "comment:creationDate";
 
     }
-    
-    public final class AdvancedSearch{
+
+    public final class AdvancedSearch {
         public static final String LIST_TAGS = "search:coverage";
         public static final String CREATED_MIN = "search:created_min";
         public static final String CREATED_MAX = "search:created_max";
@@ -31,10 +31,10 @@ public final class LabsSiteConstants {
 
     }
 
-    public enum CommentsState{
-        PENDING( "", "moderation_pending"),
-        PUBLISHED("moderation_publish", "moderation_published"),
-        REJECT("moderation_reject", "moderation_rejected");
+    public enum CommentsState {
+        PENDING("", "moderation_pending"), PUBLISHED("moderation_publish",
+                "moderation_published"), REJECT("moderation_reject",
+                "moderation_rejected");
 
         private String transition;
         private String state;
@@ -49,6 +49,7 @@ public final class LabsSiteConstants {
         public static CommentsState fromString(String symbol) {
             return stringToEnum.get(symbol);
         }
+
         private CommentsState(String transition, String state) {
             this.transition = transition;
             this.state = state;
@@ -69,7 +70,7 @@ public final class LabsSiteConstants {
         }
     }
 
-    public final class Forum{
+    public final class Forum {
         public static final String FORUM_CREATOR = "dc:creator";
     }
 
@@ -90,6 +91,7 @@ public final class LabsSiteConstants {
         public static final String PAGE_ADDED_COMMENT = "pageAddedComment";
         public static final String PUBLISHED_SITE = "publishedSite";
         public static final String PUBLISHED_SITE_MAIL = "publishedSiteMail";
+        // public static final String URL_SITE_CHANGED = "urlSiteChanged";
     }
 
     public final class FacetNames {
@@ -103,21 +105,15 @@ public final class LabsSiteConstants {
     }
 
     public enum Schemas {
-        PAGE("page", "pg"),
-        LABSTAGS("labstags", "ltg"),
-        PAGENEWS("page_news", "pgn"),
-        LABSNEWS("labsnews", "ln"),
-        PAGELIST("page_list", "pgl"),
-        PAGELIST_LINE("page_list_line", "pgll"),
-        PAGEBLOCS("page_blocs", "pgb"),
-        PAGEHTML("page_html", "html"),
-        EXTERNALURL("external_url", "exturl"),
-        LABSTEMPLATE("labstemplate", "labstemplate"),
-        LABSSITE("labssite", "labssite"),
-        LABSCONTENTVIEW("labscontentview", "labscontentview"),
-        LABS_ELEMENT_TEMPLATE("labs_element_template", "let"),
-        LABS_CATEGORY("labscategory", "labscategory"),
-        SITETHEME("sitetheme", "sitetheme");
+        PAGE("page", "pg"), LABSTAGS("labstags", "ltg"), PAGENEWS("page_news",
+                "pgn"), LABSNEWS("labsnews", "ln"), PAGELIST("page_list", "pgl"), PAGELIST_LINE(
+                "page_list_line", "pgll"), PAGEBLOCS("page_blocs", "pgb"), PAGEHTML(
+                "page_html", "html"), EXTERNALURL("external_url", "exturl"), LABSTEMPLATE(
+                "labstemplate", "labstemplate"), LABSSITE("labssite",
+                "labssite"), LABSCONTENTVIEW("labscontentview",
+                "labscontentview"), LABS_ELEMENT_TEMPLATE(
+                "labs_element_template", "let"), LABS_CATEGORY("labscategory",
+                "labscategory"), SITETHEME("sitetheme", "sitetheme");
 
         private String name;
         private String prefix;
@@ -140,33 +136,25 @@ public final class LabsSiteConstants {
     }
 
     public enum Docs {
-        DEFAULT_DOMAIN("Domain", "default-domain"),
-        SITESROOT("SitesRoot", "sites"),
-        SITE("Site", StringUtils.EMPTY),
-        TREE("Tree", "tree"),
-        ASSETS("Assets", "assets"),
-        PAGE("Page", StringUtils.EMPTY),
-        PAGEBLOCS("PageBlocs", StringUtils.EMPTY),
-        EXTERNAL_URL("ExternalURL", StringUtils.EMPTY),
-        EXTERNAL_URLS("OrderedFolder", "externalUrls"),
-        PAGENEWS("PageNews", StringUtils.EMPTY),
-        LABSNEWS("LabsNews", StringUtils.EMPTY),
-        LABSTOPIC("LMForumTopic", StringUtils.EMPTY),
-        PAGECLASSEUR("PageClasseur", StringUtils.EMPTY),
-        PAGECLASSEURFOLDER("Folder", StringUtils.EMPTY),
-        PAGELIST("PageList", StringUtils.EMPTY),
-        PAGELIST_LINE("PageListLine", StringUtils.EMPTY),
-        FOLDER("Folder", StringUtils.EMPTY),
-        HTMLPAGE("HtmlPage",StringUtils.EMPTY),
-        DASHBOARD("Space",StringUtils.EMPTY),
-        NOTIFACTIVITIES("NotificationActivities", "notifActivities"),
-        SITETHEMESROOT("Folder", "themes"),
-        SITETHEME("SiteTheme",StringUtils.EMPTY),
-        PAGEFORUM("PageForum", StringUtils.EMPTY),
-        COMMONSASSETS("Assets", "commons-assets"),
-        PAGENAV("PageNav", StringUtils.EMPTY),
-        SIDEBAR(HTMLPAGE.type(), "sidebar"),
-        WELCOME(HTMLPAGE.type(), "Accueil"); // TODO
+        DEFAULT_DOMAIN("Domain", "default-domain"), SITESROOT("SitesRoot",
+                "sites"), SITE("Site", StringUtils.EMPTY), TREE("Tree", "tree"), ASSETS(
+                "Assets", "assets"), ASSETS_FORUMS("Assets", "assetsForums"), ASSETS_NEWS(
+                "Assets", "assetsNews"), PAGE("Page", StringUtils.EMPTY), PAGEBLOCS(
+                "PageBlocs", StringUtils.EMPTY), EXTERNAL_URL("ExternalURL",
+                StringUtils.EMPTY), EXTERNAL_URLS("OrderedFolder",
+                "externalUrls"), PAGENEWS("PageNews", StringUtils.EMPTY), LABSNEWS(
+                "LabsNews", StringUtils.EMPTY), LABSTOPIC("LMForumTopic",
+                StringUtils.EMPTY), PAGECLASSEUR("PageClasseur",
+                StringUtils.EMPTY), PAGECLASSEURFOLDER("Folder",
+                StringUtils.EMPTY), PAGELIST("PageList", StringUtils.EMPTY), PAGELIST_LINE(
+                "PageListLine", StringUtils.EMPTY), FOLDER("Folder",
+                StringUtils.EMPTY), HTMLPAGE("HtmlPage", StringUtils.EMPTY), DASHBOARD(
+                "Space", StringUtils.EMPTY), NOTIFACTIVITIES(
+                "NotificationActivities", "notifActivities"), SITETHEMESROOT(
+                "Folder", "themes"), SITETHEME("SiteTheme", StringUtils.EMPTY), PAGEFORUM(
+                "PageForum", StringUtils.EMPTY), COMMONSASSETS("Assets",
+                "commons-assets"), PAGENAV("PageNav", StringUtils.EMPTY), SIDEBAR(
+                HTMLPAGE.type(), "sidebar"), WELCOME(HTMLPAGE.type(), "Accueil"); // TODO
 
         private String docType;
         private String name;
@@ -190,7 +178,8 @@ public final class LabsSiteConstants {
         }
 
         /**
-         * @return document name of document type which can be instantiated only once otherwise an empty string.
+         * @return document name of document type which can be instantiated only
+         *         once otherwise an empty string.
          */
         public String docName() {
             return name;
@@ -204,23 +193,25 @@ public final class LabsSiteConstants {
         }
 
         public static EnumSet<Docs> pageDocs() {
-            return EnumSet.of(HTMLPAGE, PAGE, DASHBOARD, PAGEBLOCS, PAGECLASSEUR, PAGELIST, PAGENEWS, PAGEFORUM, WELCOME, PAGENAV);
+            return EnumSet.of(HTMLPAGE, PAGE, DASHBOARD, PAGEBLOCS,
+                    PAGECLASSEUR, PAGELIST, PAGENEWS, PAGEFORUM, WELCOME,
+                    PAGENAV);
         }
 
         public static EnumSet<Docs> notifiableDocs() {
-            return EnumSet.of(HTMLPAGE, DASHBOARD, PAGECLASSEUR, PAGELIST, PAGENEWS, PAGEFORUM, LABSTOPIC, SITE, PAGENAV);
+            return EnumSet.of(HTMLPAGE, DASHBOARD, PAGECLASSEUR, PAGELIST,
+                    PAGENEWS, PAGEFORUM, LABSTOPIC, SITE, PAGENAV);
         }
 
         public static EnumSet<Docs> labsLifeCycleDocs() {
-            return EnumSet.of(SITE, PAGE, PAGEBLOCS, PAGENEWS, PAGECLASSEUR, PAGELIST, HTMLPAGE, PAGEFORUM, DASHBOARD, PAGENAV);
+            return EnumSet.of(SITE, PAGE, PAGEBLOCS, PAGENEWS, PAGECLASSEUR,
+                    PAGELIST, HTMLPAGE, PAGEFORUM, DASHBOARD, PAGENAV);
         }
     }
 
     public enum State {
-        DRAFT("draft", "draft"),
-        PUBLISH("publish", "published"),
-        DELETE("delete", "deleted"),
-        UNDELETE("undelete", null);
+        DRAFT("draft", "draft"), PUBLISH("publish", "published"), DELETE(
+                "delete", "deleted"), UNDELETE("undelete", null);
 
         private String transition;
         private String state;
@@ -235,6 +226,7 @@ public final class LabsSiteConstants {
         public static State fromString(String symbol) {
             return stringToEnum.get(symbol);
         }
+
         private State(String transition, String state) {
             this.transition = transition;
             this.state = state;
@@ -257,14 +249,10 @@ public final class LabsSiteConstants {
     }
 
     public enum Sidebar {
-        LOGO("logo"),
-        NOTIFICATION("notification"),
-        SITEMAP("siteMap"),
-        TOPPAGE("topPage"),
-        SUBPAGE("subPage"),
-        LAST_ACTIVITIES("lastActivities"),
-        EXTERNAL_URL("externalUrl"),
-        LAST_UPLOAD("lastUpload");
+        LOGO("logo"), NOTIFICATION("notification"), SITEMAP("siteMap"), TOPPAGE(
+                "topPage"), SUBPAGE("subPage"), LAST_ACTIVITIES(
+                "lastActivities"), EXTERNAL_URL("externalUrl"), LAST_UPLOAD(
+                "lastUpload");
 
         private String name;
 
@@ -278,6 +266,7 @@ public final class LabsSiteConstants {
         public static String fromString(String symbol) {
             return stringToEnum.get(stringToEnum.indexOf(symbol));
         }
+
         private Sidebar(String name) {
             this.name = name;
         }
@@ -298,9 +287,9 @@ public final class LabsSiteConstants {
 
     public static List<String> OREDERED_PERMISSONS;
 
-    public static PermissionsHelper  PERMISSIONS_HELPER;
+    public static PermissionsHelper PERMISSIONS_HELPER;
 
-    static{
+    static {
         OREDERED_PERMISSONS = new ArrayList<String>();
         OREDERED_PERMISSONS.add(SecurityConstants.EVERYTHING);
         OREDERED_PERMISSONS.add(SecurityConstants.READ_WRITE);
@@ -326,7 +315,8 @@ public final class LabsSiteConstants {
 
     public enum PropertyType {
 
-        COLOR("color"), FONT("font"), SIZE("size"), STRING("string"), IMAGE("image"), BOOL("boolean"), VOID("void");
+        COLOR("color"), FONT("font"), SIZE("size"), STRING("string"), IMAGE(
+                "image"), BOOL("boolean"), VOID("void");
 
         private String type;
 
@@ -351,25 +341,27 @@ public final class LabsSiteConstants {
     }
 
     public enum Directories {
-        COLUMNS_LAYOUT("columns_layout", "columns_layout", "code", "", "order"),
-        PAGE_TEMPLATES("labs_page_templates", "vocabulary", "id", "label", "ordering"),
-        THEMES("labs_themes", "vocabulary", "id", "label", "ordering"),
-        FONT_SIZES("labs_fontsizes", "vocabulary", "id", "label", "ordering"),
-        PAGE_CONTENTVIEWS("labs_HtmlPage_contentviews", "vocabulary", "id", "label", "ordering"),
-        PAGE_WIDGETS("labs_HtmlPage_widgets", "labshtmlpagewidgets", "code", "", "ordering"),
-        SIDEBAR_WIDGETS("labs_sidebar_widgets", "labshtmlpagewidgets", "code", "", "ordering"),
-        PAGE_WIDGETGROUPS("labs_HtmlPage_widgetGroups", "vocabulary", "id", "label", "ordering"),
-        FONT_FAMILIES("labs_fontfamilies", "vocabulary", "id", "label", "label"),
-        USER_STYLE("labs_userStyle", "vocabulary", "id", "label", "ordering"),
-        CATEGORY("labs_category", "vocabulary", "id", "label", "ordering"),
-        NOTIFICATION("labs_notification", "vocabulary", "id", "label", "ordering");
+        COLUMNS_LAYOUT("columns_layout", "columns_layout", "code", "", "order"), PAGE_TEMPLATES(
+                "labs_page_templates", "vocabulary", "id", "label", "ordering"), THEMES(
+                "labs_themes", "vocabulary", "id", "label", "ordering"), FONT_SIZES(
+                "labs_fontsizes", "vocabulary", "id", "label", "ordering"), PAGE_CONTENTVIEWS(
+                "labs_HtmlPage_contentviews", "vocabulary", "id", "label",
+                "ordering"), PAGE_WIDGETS("labs_HtmlPage_widgets",
+                "labshtmlpagewidgets", "code", "", "ordering"), SIDEBAR_WIDGETS(
+                "labs_sidebar_widgets", "labshtmlpagewidgets", "code", "",
+                "ordering"), PAGE_WIDGETGROUPS("labs_HtmlPage_widgetGroups",
+                "vocabulary", "id", "label", "ordering"), FONT_FAMILIES(
+                "labs_fontfamilies", "vocabulary", "id", "label", "label"), USER_STYLE(
+                "labs_userStyle", "vocabulary", "id", "label", "ordering"), CATEGORY(
+                "labs_category", "vocabulary", "id", "label", "ordering"), NOTIFICATION(
+                "labs_notification", "vocabulary", "id", "label", "ordering");
 
         private String dirName;
         private String schema;
         private String idField;
         private String labelField;
         private String orderingField;
-        
+
         private static final Map<String, Directories> stringToEnum = new HashMap<String, Directories>();
         static {
             for (Directories op : values())
@@ -380,7 +372,8 @@ public final class LabsSiteConstants {
             return stringToEnum.get(symbol);
         }
 
-        private Directories(String name, String prefix, String idField, String labelField, String orderingField) {
+        private Directories(String name, String prefix, String idField,
+                String labelField, String orderingField) {
             this.dirName = name;
             this.schema = prefix;
             this.idField = idField;
@@ -415,6 +408,7 @@ public final class LabsSiteConstants {
         }
     }
 
-    private LabsSiteConstants() {}
+    private LabsSiteConstants() {
+    }
 
 }

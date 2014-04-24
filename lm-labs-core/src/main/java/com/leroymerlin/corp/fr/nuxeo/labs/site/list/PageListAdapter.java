@@ -568,6 +568,9 @@ public class PageListAdapter extends AbstractPage implements PageList {
                     case TEXTAREA:
                         cell.setCellValue(entry.getText());
                         break;
+                    case FILES:
+                        cell.setCellValue(line.getNbrFiles());
+                        break;
                     default:
                         cell.setCellValue(EMPTY_STRING);
                         break;

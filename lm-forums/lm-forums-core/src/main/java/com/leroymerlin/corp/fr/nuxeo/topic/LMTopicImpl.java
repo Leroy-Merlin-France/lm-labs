@@ -11,36 +11,42 @@ import org.nuxeo.ecm.platform.comment.api.CommentableDocument;
 import com.leroymerlin.corp.fr.nuxeo.labs.base.AbstractPage;
 
 public class LMTopicImpl extends AbstractPage implements LMTopic {
-	
-	public LMTopicImpl(DocumentModel doc) {
-		super(doc);
-	}
 
-	public void addComment(CoreSession session, String comment) throws ClientException {
-		CommentableDocument aCommentableDocument = doc.getAdapter(CommentableDocument.class);
-		DocumentModel newComment = newComment(session, comment);
-		//The method addComment save the comment and the link.
-		aCommentableDocument.addComment(newComment);
-	}
-	
-	private DocumentModel newComment(CoreSession session, String cText) throws ClientException {
+    public LMTopicImpl(DocumentModel doc) {
+        super(doc);
+    }
+
+    public void addComment(CoreSession session, String comment)
+            throws ClientException {
+        CommentableDocument aCommentableDocument = doc
+                .getAdapter(CommentableDocument.class);
+        DocumentModel newComment = newComment(session, comment);
+        // The method addComment save the comment and the link.
+        aCommentableDocument.addComment(newComment);
+    }
+
+    private DocumentModel newComment(CoreSession session, String cText)
+            throws ClientException {
         DocumentModel comment = session.createDocumentModel("Comment");
-        comment.setPropertyValue("comment:author", session.getPrincipal().getName());
+        comment.setPropertyValue("comment:author", session.getPrincipal()
+                .getName());
         comment.setPropertyValue("comment:text", cText);
-        comment.setPropertyValue("comment:creationDate", new Date());
-        
+        comment.setPropertyValue("comment:creationDate", new Date()); 
+
         return comment;
     }
 
-	@Override
-	public List<DocumentModel> getComments() throws ClientException {
-		CommentableDocument aCommentableDocument = doc.getAdapter(CommentableDocument.class);
-		return aCommentableDocument.getComments();
-	}
+    @Override
+    public List<DocumentModel> getComments() throws ClientException {
+        CommentableDocument aCommentableDocument = doc
+                .getAdapter(CommentableDocument.class);
+        return aCommentableDocument.getComments();
+    }
 
-	@Override
-	public Integer getNbComments() throws ClientException {
-		CommentableDocument aCommentableDocument = doc.getAdapter(CommentableDocument.class);
-		return aCommentableDocument.getComments().size();
-	}
+    @Override
+    public Integer getNbComments() throws ClientException {
+        CommentableDocument aCommentableDocument = doc
+                .getAdapter(CommentableDocument.class);
+        return aCommentableDocument.getComments().size();
+    }
 }

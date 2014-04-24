@@ -4,7 +4,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import net.sf.json.JSONObject;
@@ -15,6 +14,7 @@ import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.ClientException;
 import org.nuxeo.ecm.core.api.CoreSession;
 import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.DocumentModelList;
 import org.nuxeo.ecm.core.api.PathRef;
 import org.nuxeo.ecm.core.rest.DocumentHelper;
 import org.nuxeo.ecm.core.rest.DocumentObject;
@@ -28,6 +28,14 @@ import org.nuxeo.runtime.api.Framework;
 
 @WebObject(type = "AssetFolder", superType = "LabsPage")
 public class AssetFolderResource extends DocumentObject {
+
+    @GET
+    @Override
+    public Object doGet() {
+
+        Template template = this.getView("index");
+        return template;
+    }
 
     @Path(value = "{path}")
     @Override
@@ -52,22 +60,27 @@ public class AssetFolderResource extends DocumentObject {
             throw WebException.wrap(e);
         }
     }
-    
+
     @GET
     @Path("/@views/content")
     public Template doGetRootContent() throws ClientException {
         String isCommon = ctx.getRequest().getParameter("isCommon");
-        return this.getView("content").arg("isCommon", isCommon);
+        String envName = ctx.getRequest().getParameter("envName");
+        String envType = ctx.getRequest().getParameter("envType");
+        Template template = this.getView("content");
+        template.arg("isCommon", isCommon);
+        template.arg("envName", envName);
+        template.arg("envType", envType);
+        return template;
     }
 
     public String getCalledRef() {
-        return (String) ctx.getRequest().getSession().getAttribute(
-                "calledRef");
+        return (String) ctx.getRequest().getSession().getAttribute("calledRef");
     }
 
     public String getCallFunction() {
-        return (String) ctx.getRequest().getSession().getAttribute(
-                "callFunction");
+        return (String) ctx.getRequest().getSession()
+                .getAttribute("callFunction");
     }
 
     @POST
@@ -75,7 +88,8 @@ public class AssetFolderResource extends DocumentObject {
         FormData form = ctx.getForm();
         CoreSession session = getCoreSession();
         String noRedirect = form.getString("no_redirect");
-        if (form.isMultipartContent()) {
+        String path = form.getString("path");
+        if (form.isMultipartContent()) { // add file
             String desc = form.getString("description");
             Blob blob = form.getFirstBlob();
             try {
@@ -93,16 +107,24 @@ public class AssetFolderResource extends DocumentObject {
                     json.element("text", "OK");
                     return Response.ok().build();
                 } else {
-                    return redirect(getPath() + "?" + "callFunction" + "=" + getCallFunction() + "&" + "calledRef" + "=" + getCalledRef());
+                    String url;
+                    if (path.isEmpty())
+                        url = getPath();
+                    else
+                        url = path;
+                    return redirect(url + "?" + "callFunction" + "="
+                            + getCallFunction() + "&" + "calledRef" + "="
+                            + getCalledRef());
                 }
             } catch (Exception e) {
                 throw WebException.wrap(e);
             }
-        } else {
+        } else { // add folder
             String name = ctx.getForm().getString("dublincore:title");
-            DocumentModel newDoc = DocumentHelper.createDocument(ctx, doc, name);
-            String pathSegment = URIUtils.quoteURIPathComponent(newDoc.getName(),
-                    true);
+            DocumentModel newDoc = DocumentHelper
+                    .createDocument(ctx, doc, name);
+            String pathSegment = URIUtils.quoteURIPathComponent(
+                    newDoc.getName(), true);
             try {
                 newDoc.setPropertyValue("dc:title", name);
                 session.saveDocument(newDoc);
@@ -112,7 +134,8 @@ public class AssetFolderResource extends DocumentObject {
             if (noRedirect != null) {
                 JSONObject json = new JSONObject();
                 json.element("text", "OK");
-                return Response.ok(json, MediaType.APPLICATION_JSON).build();
+                // return Response.ok(json, MediaType.APPLICATION_JSON).build();
+                return Response.ok().build();
             } else {
                 return redirect(getPath() + '/' + pathSegment);
             }
@@ -121,8 +144,13 @@ public class AssetFolderResource extends DocumentObject {
 
     private DocumentModel addFile(Blob blob) throws Exception {
         return Framework.getService(FileManager.class).createDocumentFromBlob(
-                ctx.getCoreSession(), blob, doc.getPathAsString(), true,blob.getFilename());
+                ctx.getCoreSession(), blob, doc.getPathAsString(), true,
+                blob.getFilename());
 
     }
 
+    public DocumentModelList getChildren() throws ClientException {
+        return getContext().getCoreSession()
+                .getChildren(getDocument().getRef());
+    }
 }

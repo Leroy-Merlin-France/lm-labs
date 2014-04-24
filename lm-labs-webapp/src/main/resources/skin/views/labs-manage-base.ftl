@@ -16,7 +16,7 @@
 
   <@block name="topbar">
     <@superBlock/>
-    <a href="${Context.modulePath}"><img style="position: fixed; top: 0; left: 0; border: 0;z-index: 20000;" src="${skinPath}/images/beta-ribbon.png" alt="Labs-beta"></a>
+    <a href="${Context.modulePath}"><img class="ribbon" src="${skinPath}/images/beta-ribbon.png" alt="Labs-beta"></a>
   </@block>
 
   <@block name="FKtopContent">
