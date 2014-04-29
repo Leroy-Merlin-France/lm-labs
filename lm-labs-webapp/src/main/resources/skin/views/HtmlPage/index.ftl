@@ -26,8 +26,21 @@
 			jQuery(document).ready(function() {
 				setOpensocialOptions('${contextPath}/', '${Context.locale.language}');
 				<#if basicSectionsViewMode == "tabbed" || basicSectionsViewMode == "pills" >
-				jQuery('div.tab-pane').each(function(index, value) {
+				jQuery('div.tab-pane.active').each(function(index, value) {
 					initOpensocialGadgets(value);
+				});
+				
+				// if tab is not active, widget not load. for picturebook, mustv display before load
+				jQuery('a[data-toggle="tab"]').on('shown', function (e) {
+					var id = jQuery(this).attr("href");
+					var node = jQuery("#" + id.substring(1));
+					var load = false;
+					jQuery(node).find('div.opensocialGadgets').each(function(index, value) {
+						if (jQuery(this).children().length == 0)
+							load = true;
+					});
+					if (load)
+						initOpensocialGadgets(node);
 				});
 				<#elseif basicSectionsViewMode == "carousel" >
 				jQuery(this).find('div.item.active').each(function(index, value) {

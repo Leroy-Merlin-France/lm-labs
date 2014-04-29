@@ -33,7 +33,7 @@
     <nuxeo.version>5.6.0-HF05</nuxeo.version>
     <lm.common.version>3.11</lm.common.version>
     <adeo.nuxeo.user.version>1.13.1</adeo.nuxeo.user.version>
-    <wro.version>5.7-SNAPSHOT</wro.version>
+    <wro.version>10.1</wro.version>
   </properties>
 
   <ciManagement>
