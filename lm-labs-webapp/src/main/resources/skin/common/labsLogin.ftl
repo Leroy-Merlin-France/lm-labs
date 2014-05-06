@@ -17,6 +17,7 @@
 	    );
 	    
 	    jQuery("#logoutLnk").click(doLogout);
+	    jQuery("#printLnk").click(function() {window.print();});
 	    
 	    $('input[placeholder], textarea[placeholder]').placeholder();
 	  });

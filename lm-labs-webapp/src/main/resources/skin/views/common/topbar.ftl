@@ -116,7 +116,7 @@
 	                  <li><a href="${Context.modulePath}/${mySite.URL}/@views/subscriptions"><i class="icon-envelope"></i>${Context.getMessage('label.contextmenu.notifications')}</a></li>
 	                </#if>
                 </@block>
-
+                <li><a id="printLnk" href="#"<#-- onclick="window.print();"-->><i class="icon-print"></i>${Context.getMessage('command.contextmenu.print')}</a></li>
                 <li class="divider"></li>
                 <li><a id="logoutLnk" href="#"<#-- onclick="doLogout();return false;"-->><i class="icon-signout"></i>${Context.getMessage('command.contextmenu.logout')}</a></li>
               </ul>
